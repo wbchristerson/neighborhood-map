@@ -15,6 +15,7 @@ class Search extends Component {
     return (
       <div className="search-format">
         <input
+          className='search-locations'
           type='text'
           placeholder='Search'
           value={this.state.query}
