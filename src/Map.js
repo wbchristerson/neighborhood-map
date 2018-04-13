@@ -24,7 +24,7 @@ class Map extends Component {
 
   renderMarkers(map, maps) {
     let marker = new maps.Marker({
-      position: { lat: 59.90, lng: 30.33 },
+      position: { lat: 33.888928, lng: -118.393534 },
       map,
       title: 'Hello World!'
     });
