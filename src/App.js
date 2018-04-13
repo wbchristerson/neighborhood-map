@@ -6,7 +6,7 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <Map />
+      <Map center={{ lat: 59.95, lng: 30.33 }} zoom={11}/>
     );
   }
   // <div className="App">
