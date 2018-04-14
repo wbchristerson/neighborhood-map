@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { List, ListItem } from 'material-ui/List'
+import escapeRegExp from 'escape-string-regexp'
+import sortBy from 'sort-by'
 
 class Search extends Component {
   state = {
@@ -21,8 +23,21 @@ class Search extends Component {
     })
   }
 
+  // <Subheader>Recent chats</Subheader>
   render() {
-    // <Subheader>Recent chats</Subheader>
+    // The use of regular expressions and sorting below is based on the
+    // information provided in one of the videos in "Introduction To React, Lesson:
+    // 3, State Management"
+    let showingPlaces
+    if (this.state.query) {
+      const match = new RegExp(escapeRegExp(this.state.query), 'i')
+      showingPlaces = this.state.placesList.filter((place) => match.test(place))
+    } else {
+      showingPlaces = this.state.placesList
+    }
+    if (showingPlaces.length === 0) {
+      showingPlaces.push("No items matched your query.")
+    }
     return (
       <div className="search-format">
         <input
@@ -33,7 +48,7 @@ class Search extends Component {
           onChange={(event) => this.updateQuery(event.target.value)}
         />
         <List style={{ maxHeight: '91%', overflow: 'auto' }}>
-          {this.state.placesList.map((place) => (
+          {showingPlaces.map((place) => (
             <ListItem key={place} primaryText={place}/>
           ))}
         </List>
