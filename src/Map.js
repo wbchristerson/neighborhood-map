@@ -23,11 +23,18 @@ class Map extends Component {
   // campaign=google_rich_qa
 
   renderMarkers(map, maps) {
-    let marker = new maps.Marker({
-      position: { lat: 33.888928, lng: -118.393534 },
-      map,
-      title: 'Hello World!'
-    });
+    {this.props.placesList.map((place) => (
+      new maps.Marker({
+        position: place.location,
+        map,
+        title: place.title
+      })
+    ))}
+    // let marker = new maps.Marker({
+    //   position: { lat: 33.888928, lng: -118.393534 },
+    //   map,
+    //   title: 'Hello World!'
+    // });
   }
 
   render() {

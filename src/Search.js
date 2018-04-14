@@ -6,11 +6,6 @@ import sortBy from 'sort-by'
 class Search extends Component {
   state = {
     query: '',
-    placesList: ["Aquarium", "Becker's Bakery", "The Kettle",
-      "California Pizza Kitchen", "Whole Foods", "Ralph's", "Pages",
-      "Peet's Coffee & Tea", "Redondo Beach Library", "Martha's",
-      "45th Street Beach", "Target", "Islands", "El Sombrero", "Von's",
-      "Barnes and Nobles", "Mira Costa High School", "Manhattan Beach Library"]
   }
 
   // The structure of the controlled component for the search bar is based on the
@@ -31,13 +26,14 @@ class Search extends Component {
     let showingPlaces
     if (this.state.query) {
       const match = new RegExp(escapeRegExp(this.state.query), 'i')
-      showingPlaces = this.state.placesList.filter((place) => match.test(place))
+      showingPlaces = this.props.placesList.filter((place) => match.test(place.title))
     } else {
-      showingPlaces = this.state.placesList
+      showingPlaces = this.props.placesList
     }
     if (showingPlaces.length === 0) {
       showingPlaces.push("No items matched your query.")
     }
+    showingPlaces.sort(sortBy('title'))
     return (
       <div className="search-format">
         <input
@@ -49,7 +45,7 @@ class Search extends Component {
         />
         <List style={{ maxHeight: '91%', overflow: 'auto' }}>
           {showingPlaces.map((place) => (
-            <ListItem key={place} primaryText={place}/>
+            <ListItem key={place.title} primaryText={place.title}/>
           ))}
         </List>
       </div>
