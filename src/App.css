@@ -30,20 +30,23 @@
 .app-format {
   display: flex;
   flex-direction: row;
+  height: 100%;
 }
 
 .search-format {
   width: 20%;
+  height: 100vh;
 }
 
 .search-locations {
-  width: 100%;
-  padding: 10px 10px 10px 10px;
+  width: 94%;
+  padding: 10px 3% 10px 3%;
   /* background-image: url('./icons/search.svg'); */
   /* background-repeat: no-repeat; */
   /* background-position: 20px center; */
   background-size: 1.2em;
   font-size: 1.2em;
+  max-height: 10%;
   /* border: 0; */
   /* outline: none; */
 }

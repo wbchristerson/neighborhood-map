@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import logo from './logo.svg';
 import Map from './Map'
 import Search from './Search'
-import './App.css';
+import './App.css'
+
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
 
 // Saint Petersburg: { lat: 59.95, lng: 30.33 }
 
@@ -10,7 +13,9 @@ class App extends Component {
   render() {
     return (
       <div className="app-format">
-        <Search />
+        <MuiThemeProvider>
+          <Search />
+        </MuiThemeProvider>
         <Map center={{ lat: 33.888928, lng: -118.393534 }} zoom={15}/>
       </div>
     );
