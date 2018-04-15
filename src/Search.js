@@ -16,6 +16,7 @@ class Search extends Component {
     this.setState({
       query: query
     })
+    this.props.setMarkerQuery(query)
   }
 
   // <Subheader>Recent chats</Subheader>
@@ -24,23 +25,29 @@ class Search extends Component {
     // information provided in one of the videos in "Introduction To React, Lesson:
     // 3, State Management"
     let showingPlaces
-    if (this.state.query) {
-      const match = new RegExp(escapeRegExp(this.state.query), 'i')
-      showingPlaces = this.props.placesList.filter((place) => match.test(place.title))
+    let { query } = this.state
+    let { placesList } = this.props
+    if (query) {
+      const match = new RegExp(escapeRegExp(query), 'i')
+      showingPlaces = placesList.filter((place) => match.test(place.title))
     } else {
-      showingPlaces = this.props.placesList
+      showingPlaces = placesList
     }
-    if (showingPlaces.length === 0) {
-      showingPlaces.push("No items matched your query.")
-    }
+    // if (showingPlaces.length === 0) {
+    //   showingPlaces.push({title: "No items matched your query."})
+    // }
     showingPlaces.sort(sortBy('title'))
+    // this.props.setMarkerQuery(query, this.props.obj)
+    // if (this.props.placesFilter !== showingPlaces) {
+    //   this.props.setMarkerList(showingPlaces)
+    // }
     return (
       <div className="search-format">
         <input
           className='search-locations'
           type='text'
           placeholder='Search'
-          value={this.state.query}
+          value={query}
           onChange={(event) => this.updateQuery(event.target.value)}
         />
         <List style={{ maxHeight: '91%', overflow: 'auto' }}>
