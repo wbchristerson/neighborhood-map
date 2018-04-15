@@ -6,6 +6,10 @@ import React, { Component } from 'react'
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
 
 
+/*  The structure of this component is based on the example provided here:
+ *  https://tomchentw.github.io/react-google-maps/
+ */
+
 const Map = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={props.zoom}
