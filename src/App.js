@@ -91,7 +91,6 @@ class App extends Component {
           <Search placesList={this.state.placesList} setMarkerQuery={this.setMarkerQuery.bind(this)} />
         </MuiThemeProvider>
         <Map
-          isMarkerShown={true}
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS3Ijzo5Ona6YUsFuvRlHy1NFDEsmesoI&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={< div style={{ width: `80%`, height: `100vh` }} />}

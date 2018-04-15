@@ -18,7 +18,7 @@ const Map = withScriptjs(withGoogleMap((props) =>
   >
     {props.filteredPlaces.map((place) => {
       return (
-        <Marker title={place.title} position={place.location} />
+        <Marker key={place.title} title={place.title} position={place.location} />
       )
     })}
   </GoogleMap>
