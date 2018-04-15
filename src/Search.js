@@ -52,7 +52,7 @@ class Search extends Component {
         />
         <List style={{ maxHeight: '91%', overflow: 'auto' }}>
           {showingPlaces.map((place) => (
-            <ListItem key={place.title} primaryText={place.title}/>
+            <ListItem style={{ color: 'white', background: 'black' }} key={place.title} primaryText={place.title}/>
           ))}
         </List>
       </div>
