@@ -52,7 +52,15 @@ class Search extends Component {
         />
         <List style={{ maxHeight: '91%', overflow: 'auto' }}>
           {showingPlaces.map((place) => (
-            <ListItem style={{ color: 'white', background: 'black' }} key={place.title} primaryText={place.title}/>
+            <ListItem
+              // classes={ 'list-color' }
+              key={place.title}
+              hoverColor='#62f442'
+              primaryText={place.title}
+              // style={{ color: 'white', backgroundColor: '#44d6c7' }}
+              // onMouseEnter={(e) => e.target.style.backgroundColor = '#495054'}
+              // onMouseLeave={(e) => e.target.style.backgroundColor = '#44d6c7'}
+            />
           ))}
         </List>
       </div>
