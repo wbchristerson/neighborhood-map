@@ -28,31 +28,59 @@ class App extends Component {
       { title: "Manhattan Beach Library", location: {lat: 33.887115, lng: -118.410357} }
     ],
     filterQuery: '',
+    imageSrc: '',
   }
 
+  // updateImage (newImageSrc) {
+  //   this.setState({
+  //     imageSrc: newImageSrc,
+  //   })
+  // }
+
   componentDidMount() {
-    // fetch('https://api.foursquare.com/v2/venues/search?ll=33.8,-118.4&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=3', {
-    //   method: 'GET'
+    fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=1`)
+    .then((res) => res.text())
+    .then((text) => {
+      let formattedResponse = JSON.parse(text).response.venues[0];
+      let imgUrlObj = formattedResponse.categories[0].icon;
+      console.log("Droid: ", formattedResponse)
+      this.setState({
+        imageSrc: imgUrlObj.prefix + 'original' + imgUrlObj.suffix
+      })
+    })
+    .catch((error) => console.log("Error: ", error))
+
+    // fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=1`, {
+    //   method: 'GET',
     // })
     // .then((res) => console.log("Result: ", res ))
     // .catch((error) => console.log("Error: ", error))
     // https://api.foursquare.com/v2/venues/search?ll=33.8,-118.4&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=3
 
-    function handleSuccess () {
-      console.log("this: ", this);
-      console.log( this.responseText );
-      // the HTML of https://unsplash.com/}
-    }
 
-    function handleError () {
-      console.log( 'An error occurred \uD83D\uDE1E' );
-    }
-
-    const asyncRequestObject = new XMLHttpRequest();
-    asyncRequestObject.open('GET', 'https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=1');
-    asyncRequestObject.onload = handleSuccess;
-    asyncRequestObject.onerror = handleError;
-    asyncRequestObject.send();
+    // function handleSuccess(req, outerContext) {
+    //   console.log("Request: ", req)
+    //   console.log("Outer Context: ", outerContext)
+    //
+    //   let targetObject = JSON.parse(req.responseText).response.venues[0];
+    //   console.log("Target Object: ", targetObject);
+    //   let pre = targetObject.categories[0].icon.prefix;
+    //   let suf = targetObject.categories[0].icon.suffix;
+    //   console.log("Pre: ", pre);
+    //   outerContext.setState({
+    //     imageSrc: pre + '300x500' + suf,
+    //   })
+    // }
+    //
+    // function handleError () {
+    //   console.log( 'An error occurred \uD83D\uDE1E' );
+    // }
+    //
+    // const asyncRequestObject = new XMLHttpRequest();
+    // asyncRequestObject.open('GET', 'https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=1');
+    // asyncRequestObject.onload = (() => handleSuccess(asyncRequestObject, this));
+    // asyncRequestObject.onerror = handleError;
+    // asyncRequestObject.send();
   }
 
   setMarkerQuery(newQuery) {
@@ -83,6 +111,7 @@ class App extends Component {
           center={{ lat: 33.888928, lng: -118.393534 }}
           zoom={14}
           filteredPlaces={filteredPlaces}/>
+        {this.state.imageSrc && <img src={this.state.imageSrc} alt="Test"/>}
       </div>
     );
   }
