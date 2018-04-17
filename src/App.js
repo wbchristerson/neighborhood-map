@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import logo from './logo.svg';
 import Map from './Map'
 import Search from './Search'
+import InfoTab from './InfoTab'
 import './App.css'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import escapeRegExp from 'escape-string-regexp'
@@ -29,24 +29,14 @@ class App extends Component {
     ],
     filterQuery: '',
     imageSrc: '',
+    itemClicked: false,
   }
-
-  // updateImage (newImageSrc) {
-  //   this.setState({
-  //     imageSrc: newImageSrc,
-  //   })
-  // }
 
   componentDidMount() {
     fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=1`)
     .then((res) => res.text())
     .then((text) => {
       let formattedResponse = JSON.parse(text).response.venues[0];
-      console.log("Droid: ", formattedResponse)
-      // let imgUrlObj = formattedResponse.categories[0].icon;
-      // this.setState({
-      //   imageSrc: imgUrlObj.prefix + 'original' + imgUrlObj.suffix
-      // })
       return formattedResponse.id
     })
     .then((id) => {
@@ -61,38 +51,12 @@ class App extends Component {
       })
     })
     .catch((error) => console.log("Error: ", error))
+  }
 
-    // fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=1`, {
-    //   method: 'GET',
-    // })
-    // .then((res) => console.log("Result: ", res ))
-    // .catch((error) => console.log("Error: ", error))
-    // https://api.foursquare.com/v2/venues/search?ll=33.8,-118.4&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=3
-
-
-    // function handleSuccess(req, outerContext) {
-    //   console.log("Request: ", req)
-    //   console.log("Outer Context: ", outerContext)
-    //
-    //   let targetObject = JSON.parse(req.responseText).response.venues[0];
-    //   console.log("Target Object: ", targetObject);
-    //   let pre = targetObject.categories[0].icon.prefix;
-    //   let suf = targetObject.categories[0].icon.suffix;
-    //   console.log("Pre: ", pre);
-    //   outerContext.setState({
-    //     imageSrc: pre + '300x500' + suf,
-    //   })
-    // }
-    //
-    // function handleError () {
-    //   console.log( 'An error occurred \uD83D\uDE1E' );
-    // }
-    //
-    // const asyncRequestObject = new XMLHttpRequest();
-    // asyncRequestObject.open('GET', 'https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=1');
-    // asyncRequestObject.onload = (() => handleSuccess(asyncRequestObject, this));
-    // asyncRequestObject.onerror = handleError;
-    // asyncRequestObject.send();
+  setClicked() {
+    this.setState({
+      itemClicked: true,
+    })
   }
 
   setMarkerQuery(newQuery) {
@@ -112,9 +76,15 @@ class App extends Component {
 
     return (
       <div className="app-format">
-        <MuiThemeProvider>
-          <Search placesList={this.state.placesList} setMarkerQuery={this.setMarkerQuery.bind(this)} />
-        </MuiThemeProvider>
+        {!this.state.itemClicked &&
+          <MuiThemeProvider>
+            <Search
+              placesList={this.state.placesList}
+              setClicked={this.setClicked.bind(this)}
+              setMarkerQuery={this.setMarkerQuery.bind(this)}
+            />
+          </MuiThemeProvider>}
+        {this.state.itemClicked && <InfoTab/>}
         <Map
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS3Ijzo5Ona6YUsFuvRlHy1NFDEsmesoI&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `100%` }} />}
@@ -127,15 +97,6 @@ class App extends Component {
       </div>
     );
   }
-  // <div className="App">
-  // <header className="App-header">
-  // <img src={logo} className="App-logo" alt="logo" />
-  // <h1 className="App-title">Welcome to React</h1>
-  // </header>
-  // <p className="App-intro">
-  // To get started, edit <code>src/App.js</code> and save to reload.
-  // </p>
-  // </div>
 }
 
 export default App;

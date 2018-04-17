@@ -57,6 +57,7 @@ class Search extends Component {
               key={place.title}
               // hoverColor='#62f442'
               primaryText={place.title}
+              onClick={this.props.setClicked}
               // style={{ color: 'white', backgroundColor: '#44d6c7' }}
               // onMouseEnter={(e) => e.target.style.backgroundColor = '#495054'}
               // onMouseLeave={(e) => e.target.style.backgroundColor = '#44d6c7'}
