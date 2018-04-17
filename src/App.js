@@ -49,7 +49,7 @@ class App extends Component {
     }
 
     const asyncRequestObject = new XMLHttpRequest();
-    asyncRequestObject.open('GET', 'https://api.foursquare.com/v2/venues/search?ll=33.8,-118.4&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=3');
+    asyncRequestObject.open('GET', 'https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=1');
     asyncRequestObject.onload = handleSuccess;
     asyncRequestObject.onerror = handleError;
     asyncRequestObject.send();
