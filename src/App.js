@@ -42,10 +42,22 @@ class App extends Component {
     .then((res) => res.text())
     .then((text) => {
       let formattedResponse = JSON.parse(text).response.venues[0];
-      let imgUrlObj = formattedResponse.categories[0].icon;
       console.log("Droid: ", formattedResponse)
-      this.setState({
-        imageSrc: imgUrlObj.prefix + 'original' + imgUrlObj.suffix
+      // let imgUrlObj = formattedResponse.categories[0].icon;
+      // this.setState({
+      //   imageSrc: imgUrlObj.prefix + 'original' + imgUrlObj.suffix
+      // })
+      return formattedResponse.id
+    })
+    .then((id) => {
+      fetch(`https://api.foursquare.com/v2/venues/${id}/photos?client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815`)
+      .then((res) => res.text())
+      .then((text) => {
+        let formattedNewResponse = JSON.parse(text)
+        let imageInfo = formattedNewResponse.response.photos.items[0]
+        this.setState({
+          imageSrc: imageInfo.prefix + '36x36' + imageInfo.suffix
+        })
       })
     })
     .catch((error) => console.log("Error: ", error))
