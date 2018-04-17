@@ -53,9 +53,9 @@ class App extends Component {
     .catch((error) => console.log("Error: ", error))
   }
 
-  setClicked() {
+  setClicked(status) {
     this.setState({
-      itemClicked: true,
+      itemClicked: status,
     })
   }
 
@@ -84,7 +84,10 @@ class App extends Component {
               setMarkerQuery={this.setMarkerQuery.bind(this)}
             />
           </MuiThemeProvider>}
-        {this.state.itemClicked && <InfoTab/>}
+        {this.state.itemClicked &&
+          <MuiThemeProvider>
+            <InfoTab subject="Target" setClicked={this.setClicked.bind(this)}/>
+          </MuiThemeProvider>}
         <Map
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS3Ijzo5Ona6YUsFuvRlHy1NFDEsmesoI&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `100%` }} />}
@@ -92,11 +95,12 @@ class App extends Component {
           mapElement={<div style={{ height: `100%` }} />}
           center={{ lat: 33.888928, lng: -118.393534 }}
           zoom={14}
-          filteredPlaces={filteredPlaces}/>
-        {this.state.imageSrc && <img src={this.state.imageSrc} alt="Test"/>}
+          filteredPlaces={filteredPlaces}
+        />
       </div>
     );
   }
 }
+// {this.state.imageSrc && <img src={this.state.imageSrc} alt="Test"/>}
 
 export default App;
