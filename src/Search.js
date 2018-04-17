@@ -55,7 +55,7 @@ class Search extends Component {
             <ListItem
               // classes={ 'list-color' }
               key={place.title}
-              hoverColor='#62f442'
+              // hoverColor='#62f442'
               primaryText={place.title}
               // style={{ color: 'white', backgroundColor: '#44d6c7' }}
               // onMouseEnter={(e) => e.target.style.backgroundColor = '#495054'}
