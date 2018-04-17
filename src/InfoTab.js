@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import RaisedButton from 'material-ui/RaisedButton'
+import IconButton from 'material-ui/IconButton'
+import FontIcon from 'material-ui/FontIcon';
+import ActionHome from 'material-ui/svg-icons/action/home'
 
 class InfoTab extends Component {
   state = {
@@ -31,7 +34,11 @@ class InfoTab extends Component {
   render() {
     return (
       <div className="search-format">
-        <RaisedButton onClick={() => this.props.setClicked(false)} label="Default" style={{ margin: 12 }}/>
+        <IconButton onClick={() => this.props.setClicked(false)} tooltip="Font Icon">
+          <FontIcon className="muidocs-icon-action-home" />
+        </IconButton>
+        <IconButton iconClassName="muidocs-icon-custom-github" onClick={() => this.props.setClicked(false)} />
+        <RaisedButton onClick={() => this.props.setClicked(false)} label="Back" style={{ margin: 12 }}/>
         {this.state.imageSrc && <img className="image-dimensions" src={this.state.imageSrc} alt="Test"/>}
       </div>
     )
