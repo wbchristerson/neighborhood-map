@@ -30,8 +30,30 @@ class App extends Component {
     filterQuery: '',
   }
 
-  // componentDidMount() {
-  // }
+  componentDidMount() {
+    // fetch('https://api.foursquare.com/v2/venues/search?ll=33.8,-118.4&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=3', {
+    //   method: 'GET'
+    // })
+    // .then((res) => console.log("Result: ", res ))
+    // .catch((error) => console.log("Error: ", error))
+    // https://api.foursquare.com/v2/venues/search?ll=33.8,-118.4&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=3
+
+    function handleSuccess () {
+      console.log("this: ", this);
+      console.log( this.responseText );
+      // the HTML of https://unsplash.com/}
+    }
+
+    function handleError () {
+      console.log( 'An error occurred \uD83D\uDE1E' );
+    }
+
+    const asyncRequestObject = new XMLHttpRequest();
+    asyncRequestObject.open('GET', 'https://api.foursquare.com/v2/venues/search?ll=33.8,-118.4&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=3');
+    asyncRequestObject.onload = handleSuccess;
+    asyncRequestObject.onerror = handleError;
+    asyncRequestObject.send();
+  }
 
   setMarkerQuery(newQuery) {
     this.setState({
