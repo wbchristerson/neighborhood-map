@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import RaisedButton from 'material-ui/RaisedButton'
 import IconButton from 'material-ui/IconButton'
+import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
+// import RaisedButton from 'material-ui/RaisedButton'
 // import FontIcon from 'material-ui/FontIcon'
 // import ActionHome from 'material-ui/svg-icons/action/home'
-import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 
 class InfoTab extends Component {
   state = {
@@ -37,11 +37,13 @@ class InfoTab extends Component {
     // <IconButton iconClassName="muidocs-icon-custom-github" onClick={() => this.props.setClicked(false)} />
     // <ActionHome/>
     // <RaisedButton onClick={() => this.props.setClicked(false)} label="Back" style={{ margin: 12 }}/>
+    console.log("Title: ", this.props.currentPlace)
     return (
       <div className="search-format">
         <IconButton onClick={() => this.props.setClicked(false)} tooltip="Font Icon">
           <ArrowBack/>
         </IconButton>
+        <div>{this.props.currentPlace}</div>
         {this.state.imageSrc && <img className="image-dimensions" src={this.state.imageSrc} alt="Test"/>}
       </div>
     )

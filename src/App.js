@@ -29,7 +29,8 @@ class App extends Component {
     ],
     filterQuery: '',
     imageSrc: '',
-    itemClicked: false,
+    itemClicked: false, // whether a specific item has been clicked
+    currentPlace: '', // place being considered
   }
 
   componentDidMount() {
@@ -65,6 +66,12 @@ class App extends Component {
     })
   }
 
+  setCurrentPlace(name) {
+    this.setState({
+      currentPlace: name,
+    })
+  }
+
   render() {
     let filteredPlaces
     if (this.state.filterQuery) {
@@ -82,11 +89,12 @@ class App extends Component {
               placesList={this.state.placesList}
               setClicked={this.setClicked.bind(this)}
               setMarkerQuery={this.setMarkerQuery.bind(this)}
+              setCurrentPlace={this.setCurrentPlace.bind(this)}
             />
           </MuiThemeProvider>}
         {this.state.itemClicked &&
           <MuiThemeProvider>
-            <InfoTab subject="Target" setClicked={this.setClicked.bind(this)}/>
+            <InfoTab subject="Target" setClicked={this.setClicked.bind(this)} currentPlace={this.state.currentPlace}/>
           </MuiThemeProvider>}
         <Map
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS3Ijzo5Ona6YUsFuvRlHy1NFDEsmesoI&v=3.exp&libraries=geometry,drawing,places"
