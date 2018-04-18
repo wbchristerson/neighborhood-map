@@ -45,7 +45,7 @@ class InfoTab extends Component {
       fetch(`https://api.foursquare.com/v2/venues/${id}?client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815`)
       .then((res) => res.text())
       .then((text) => {
-        let allData = JSON.parse(text)
+        let allData = JSON.parse(text).response.venue
         console.log("The Text: ", allData)
       })
     })

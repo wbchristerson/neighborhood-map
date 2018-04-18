@@ -23,14 +23,16 @@ class App extends Component {
       { title: "Islands Restaurant", location: {lat: 33.899627, lng: -118.394053} },
       { title: "El Sombrero", location: {lat: 33.874037, lng: -118.394050} },
       { title: "Von's", location: {lat: 33.885148, lng: -118.407879} },
-      { title: "Barnes and Noble", location: {lat: 33.900630, lng: -118.380849} },
+      { title: "Barnes and Noble", location: {lat: 33.900680, lng: -118.380849} },
       { title: "Mira Costa High School", location: {lat: 33.873556, lng: -118.389907} },
-      { title: "Manhattan Beach Library", location: {lat: 33.887115, lng: -118.410357} }
+      { title: "Manhattan Beach Library", location: {lat: 33.887115, lng: -118.410357} },
+      { title: "Trader Joe's", location: {lat: 33.900345, lng: -118.381278} }
     ],
     filterQuery: '',
     imageSrc: '',
     itemClicked: false, // whether a specific item has been clicked
     currentPlace: '', // place being considered
+    // currentLocation: {}, // lat, lng coordinates of location
   }
 
   componentDidMount() {
@@ -94,7 +96,9 @@ class App extends Component {
           </MuiThemeProvider>}
         {this.state.itemClicked &&
           <MuiThemeProvider>
-            <InfoTab subject="Target" setClicked={this.setClicked.bind(this)} currentPlace={this.state.currentPlace}/>
+            <InfoTab
+              setClicked={this.setClicked.bind(this)}
+              currentPlace={this.state.currentPlace}/>
           </MuiThemeProvider>}
         <Map
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS3Ijzo5Ona6YUsFuvRlHy1NFDEsmesoI&v=3.exp&libraries=geometry,drawing,places"
