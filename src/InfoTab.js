@@ -7,7 +7,10 @@ import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 
 class InfoTab extends Component {
   state = {
-    imageSrc: ''
+    imageSrc: '',
+    address: '',
+    formattedAddress: '',
+    coordinates: [],
   }
 
   // fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=Target&limit=1`)
@@ -16,6 +19,13 @@ class InfoTab extends Component {
     .then((res) => res.text())
     .then((text) => {
       let formattedResponse = JSON.parse(text).response.venues[0];
+      // console.log("Result: ", formattedResponse)
+      // console.log("Address: ", formattedResponse.location)
+      this.setState({
+        address: formattedResponse.location.crossStreet,
+        formattedAddress: formattedResponse.location.formattedAddress[0] + ', ' + formattedResponse.location.formattedAddress[1],
+        coordinates: [formattedResponse.location.lat, formattedResponse.location.lng]
+      })
       return formattedResponse.id
     })
     .then((id) => {
@@ -23,11 +33,20 @@ class InfoTab extends Component {
       .then((res) => res.text())
       .then((text) => {
         let formattedNewResponse = JSON.parse(text)
-        console.log("Photo List: ", formattedNewResponse.response.photos)
+        // console.log("Photo List: ", formattedNewResponse.response.photos)
         let imageInfo = formattedNewResponse.response.photos.items[0]
         this.setState({
           imageSrc: imageInfo.prefix + 'original' + imageInfo.suffix
         })
+      })
+      return id
+    })
+    .then((id) => {
+      fetch(`https://api.foursquare.com/v2/venues/${id}?client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815`)
+      .then((res) => res.text())
+      .then((text) => {
+        let allData = JSON.parse(text)
+        console.log("The Text: ", allData)
       })
     })
     .catch((error) => console.log("Error: ", error))
@@ -38,7 +57,6 @@ class InfoTab extends Component {
     // <IconButton iconClassName="muidocs-icon-custom-github" onClick={() => this.props.setClicked(false)} />
     // <ActionHome/>
     // <RaisedButton onClick={() => this.props.setClicked(false)} label="Back" style={{ margin: 12 }}/>
-    console.log("Title: ", this.props.currentPlace)
     return (
       <div className="search-format">
         <div className="title-block">
@@ -48,6 +66,9 @@ class InfoTab extends Component {
           <div className="title-place">{this.props.currentPlace}</div>
         </div>
         {this.state.imageSrc && <img className="image-dimensions" src={this.state.imageSrc} alt="Test"/>}
+        {this.state.address && <div>Address: {this.state.address}</div>}
+        {this.state.formattedAddress && <div>Location: {this.state.formattedAddress}</div>}
+        {this.state.coordinates.length === 2 && <div>Coordinates: ({this.state.coordinates[0]}, {this.state.coordinates[1]})</div>}
       </div>
     )
   }
