@@ -87,9 +87,9 @@ class App extends Component {
           <MuiThemeProvider>
             <Search
               placesList={this.state.placesList}
+              setCurrentPlace={this.setCurrentPlace.bind(this)}
               setClicked={this.setClicked.bind(this)}
               setMarkerQuery={this.setMarkerQuery.bind(this)}
-              setCurrentPlace={this.setCurrentPlace.bind(this)}
             />
           </MuiThemeProvider>}
         {this.state.itemClicked &&

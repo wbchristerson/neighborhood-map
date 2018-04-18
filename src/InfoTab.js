@@ -10,8 +10,9 @@ class InfoTab extends Component {
     imageSrc: ''
   }
 
+  // fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=Target&limit=1`)
   componentDidMount() {
-    fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=1`)
+    fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=${this.props.currentPlace}&limit=1`)
     .then((res) => res.text())
     .then((text) => {
       let formattedResponse = JSON.parse(text).response.venues[0];
@@ -40,10 +41,12 @@ class InfoTab extends Component {
     console.log("Title: ", this.props.currentPlace)
     return (
       <div className="search-format">
-        <IconButton onClick={() => this.props.setClicked(false)} tooltip="Font Icon">
-          <ArrowBack/>
-        </IconButton>
-        <div>{this.props.currentPlace}</div>
+        <div className="title-block">
+          <IconButton onClick={() => this.props.setClicked(false)} tooltip="Font Icon">
+            <ArrowBack/>
+          </IconButton>
+          <div className="title-place">{this.props.currentPlace}</div>
+        </div>
         {this.state.imageSrc && <img className="image-dimensions" src={this.state.imageSrc} alt="Test"/>}
       </div>
     )
