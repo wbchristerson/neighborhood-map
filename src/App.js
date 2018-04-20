@@ -18,7 +18,7 @@ class App extends Component {
       { title: "Pages Book Store", location: {lat: 33.883141, lng: -118.409656} },
       { title: "Peet's Coffee & Tea", location: {lat: 33.885273, lng: -118.408892} },
       { title: "Martha's 22nd Street Grill", location: {lat: 33.869321, lng: -118.403978} },
-      { title: "6th Street Beach", location: {lat: 33.904201, lng: -118.422161} },
+      { title: "6th Street Beach", location: {lat: 33.86472458721469, lng: -118.40289377563536} },
       { title: "Target", location: {lat: 33.888592, lng: -118.394307} },
       { title: "Islands Restaurant", location: {lat: 33.899627, lng: -118.394053} },
       { title: "El Sombrero", location: {lat: 33.874037, lng: -118.394050} },
@@ -105,7 +105,7 @@ class App extends Component {
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={< div style={{ width: `80%`, height: `100vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
-          center={{ lat: 33.888928, lng: -118.393534 }}
+          center={{ lat: 33.888428, lng: -118.393534 }}
           zoom={14}
           filteredPlaces={filteredPlaces}
         />
