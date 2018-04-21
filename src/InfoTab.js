@@ -11,6 +11,7 @@ class InfoTab extends Component {
     address: '',
     formattedAddress: '',
     coordinates: [],
+    categories: [],
   }
 
   // fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=Target&limit=1`)
@@ -47,6 +48,9 @@ class InfoTab extends Component {
       .then((text) => {
         let allData = JSON.parse(text).response.venue
         console.log("The Text: ", allData)
+        this.setState({
+          categories: allData.categories
+        })
       })
     })
     .catch((error) => console.log("Error: ", error))
@@ -69,6 +73,8 @@ class InfoTab extends Component {
         {this.state.address && <div>Address: {this.state.address}</div>}
         {this.state.formattedAddress && <div>Location: {this.state.formattedAddress}</div>}
         {this.state.coordinates.length === 2 && <div>Coordinates: ({this.state.coordinates[0]}, {this.state.coordinates[1]})</div>}
+        <div>Categories:</div>
+        {this.state.categories.map((category) => (<div key={category.id}>{category.name}</div>))}
       </div>
     )
   }
