@@ -14,6 +14,7 @@ class InfoTab extends Component {
     categories: [],
     phoneContact: '',
     twitterContact: '',
+    facebookContact: '',
   }
 
   // fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=Target&limit=1`)
@@ -56,6 +57,8 @@ class InfoTab extends Component {
             allData.contact.formattedPhone : '',
           twitterContact: (allData.hasOwnProperty('contact') && allData.contact.hasOwnProperty('twitter')) ?
             allData.contact.twitter : '',
+          facebookContact: (allData.hasOwnProperty('contact') && allData.contact.hasOwnProperty('facebookName')) ?
+            allData.contact.facebookName : '',
         })
       })
     })
@@ -84,6 +87,7 @@ class InfoTab extends Component {
         {(this.state.phoneContact || this.state.twitterContact) && <div>Contact:</div>}
         {this.state.phoneContact && <div>Phone: {this.state.phoneContact}</div>}
         {this.state.twitterContact && <div>Twitter: {this.state.twitterContact}</div>}
+        {this.state.facebookContact && <div>Facebook: {this.state.facebookContact}</div>}
       </div>
     )
   }
