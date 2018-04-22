@@ -21,6 +21,9 @@ class InfoTab extends Component {
     popularTimes: [],
     rating: -1.0,
     tip: '',
+    menuUrl: '',
+    menuMobileUrl: '',
+    price: '',
   }
 
   // fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=Target&limit=1`)
@@ -79,6 +82,9 @@ class InfoTab extends Component {
             allData.tips.groups[0].hasOwnProperty('items') &&
             (allData.tips.groups[0].items.length > 0) &&
             allData.tips.groups[0].items[0].hasOwnProperty('text')) ? allData.tips.groups[0].items[0].text : ''),
+          menuUrl: (allData.hasOwnProperty('menu') && allData.menu.hasOwnProperty('url')) ? allData.menu.url : '',
+          menuMobileUrl: (allData.hasOwnProperty('menu') && allData.menu.hasOwnProperty('mobileUrl')) ? allData.menu.mobileUrl : '',
+          price: (allData.hasOwnProperty('price') && allData.price.hasOwnProperty('message')) ? allData.price.message : '',
         })
       })
     })
@@ -137,6 +143,8 @@ class InfoTab extends Component {
           }
           {(this.state.rating >= 0.0) && <div>Rating: {this.state.rating}/10</div>}
           {this.state.tip && <div>One visitor had this to say: {this.state.tip}</div>}
+          {this.state.menuUrl && <div>Menu: {this.state.menuUrl}</div>}
+          {this.state.price && <div>Price: {this.state.price}</div>}
         </div>
       </div>
     )
