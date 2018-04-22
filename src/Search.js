@@ -78,7 +78,7 @@ class Search extends Component {
             let optionalIcon
             if (place.placeType === 'restaurant') {
               optionalIcon = <Restaurant />
-            } else if (place.placeType === 'library') {
+            } else if (place.placeType === 'books') {
               optionalIcon = <LocalLibrary />
             } else if (place.placeType === 'cafe') {
               optionalIcon = <LocalCafe />
@@ -90,6 +90,8 @@ class Search extends Component {
               optionalIcon = <Cake />
             } else if (place.placeType === 'school') {
               optionalIcon = <School />
+            } else if (place.placeType === 'bakery') {
+              optionalIcon = <Cake />
             }
             return (
               <ListItem
