@@ -24,6 +24,7 @@ class InfoTab extends Component {
     menuUrl: '',
     menuMobileUrl: '',
     price: '',
+    description: '',
   }
 
   // fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=Target&limit=1`)
@@ -85,6 +86,7 @@ class InfoTab extends Component {
           menuUrl: (allData.hasOwnProperty('menu') && allData.menu.hasOwnProperty('url')) ? allData.menu.url : '',
           menuMobileUrl: (allData.hasOwnProperty('menu') && allData.menu.hasOwnProperty('mobileUrl')) ? allData.menu.mobileUrl : '',
           price: (allData.hasOwnProperty('price') && allData.price.hasOwnProperty('message')) ? allData.price.message : '',
+          description: allData.hasOwnProperty('description') ? allData.description : '',
         })
       })
     })
@@ -145,6 +147,7 @@ class InfoTab extends Component {
           {this.state.tip && <div>One visitor had this to say: {this.state.tip}</div>}
           {this.state.menuUrl && <div>Menu: {this.state.menuUrl}</div>}
           {this.state.price && <div>Price: {this.state.price}</div>}
+          {this.state.description && <div>Description: {this.state.description}</div>}
         </div>
       </div>
     )
