@@ -19,6 +19,7 @@ class InfoTab extends Component {
     openStatus: '',
     timeFrames: [],
     popularTimes: [],
+    rating: -1.0,
   }
 
   // fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=Target&limit=1`)
@@ -70,6 +71,7 @@ class InfoTab extends Component {
             allData.hours.timeframes : []),
           popularTimes: ((allData.hasOwnProperty('popular') && allData.popular.hasOwnProperty('timeframes')) ?
             allData.popular.timeframes : []),
+          rating: (allData.hasOwnProperty('rating') ? allData.rating : -1.0)
         })
       })
     })
@@ -107,9 +109,9 @@ class InfoTab extends Component {
               Schedule:
               {this.state.timeFrames.map((time) => {
                 if (time.hasOwnProperty('includesToday') && time.includesToday) {
-                  return ( <div key={time.days}><b>{time.days}: {time.open[0].renderedTime}</b></div> )
+                  return ( <div key={time.days}><b>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</b></div> )
                 } else {
-                  return ( <div key={time.days}>{time.days}: {time.open[0].renderedTime}</div> )
+                  return ( <div key={time.days}>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</div> )
                 }
               })}
             </div>
@@ -126,6 +128,7 @@ class InfoTab extends Component {
               })}
             </div>
           }
+          {(this.state.rating >= 0.0) && <div>Rating (out of 10): {this.state.rating}</div>}
         </div>
       </div>
     )
