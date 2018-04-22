@@ -16,6 +16,8 @@ class InfoTab extends Component {
     twitterContact: '',
     facebookContact: '',
     url: '',
+    openStatus: '',
+    timeFrames: [],
   }
 
   // fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=Target&limit=1`)
@@ -61,6 +63,10 @@ class InfoTab extends Component {
           facebookContact: (allData.hasOwnProperty('contact') && allData.contact.hasOwnProperty('facebookName')) ?
             allData.contact.facebookName : '',
           url: (allData.hasOwnProperty('url')) ? allData.url : '',
+          openStatus: ((allData.hasOwnProperty('hours') && allData.hours.hasOwnProperty('status')) ?
+            allData.hours.status : ''),
+          timeFrames: ((allData.hasOwnProperty('hours') && allData.hours.hasOwnProperty('timeframes')) ?
+            allData.hours.timeframes : [])
         })
       })
     })
@@ -91,6 +97,19 @@ class InfoTab extends Component {
         {this.state.twitterContact && <div>Twitter: {this.state.twitterContact}</div>}
         {this.state.facebookContact && <div>Facebook: {this.state.facebookContact}</div>}
         {this.state.url && <div>URL: {this.state.url}</div>}
+        {this.state.openStatus && <div>Current Status: {this.state.openStatus}</div>}
+        {(this.state.timeFrames.length > 0) &&
+          <div>
+            Schedule:
+            {this.state.timeFrames.map((time) => {
+              if (time.hasOwnProperty('includesToday') && time.includesToday) {
+                return ( <div key={time.days}><b>{time.days}: {time.open[0].renderedTime}</b></div> )
+              } else {
+                return ( <div key={time.days}>{time.days}: {time.open[0].renderedTime}</div> )
+              }
+            })}
+          </div>
+        }
       </div>
     )
   }
