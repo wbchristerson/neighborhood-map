@@ -18,6 +18,7 @@ class InfoTab extends Component {
     url: '',
     openStatus: '',
     timeFrames: [],
+    popularTimes: [],
   }
 
   // fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=Target&limit=1`)
@@ -66,7 +67,9 @@ class InfoTab extends Component {
           openStatus: ((allData.hasOwnProperty('hours') && allData.hours.hasOwnProperty('status')) ?
             allData.hours.status : ''),
           timeFrames: ((allData.hasOwnProperty('hours') && allData.hours.hasOwnProperty('timeframes')) ?
-            allData.hours.timeframes : [])
+            allData.hours.timeframes : []),
+          popularTimes: ((allData.hasOwnProperty('popular') && allData.popular.hasOwnProperty('timeframes')) ?
+            allData.popular.timeframes : []),
         })
       })
     })
@@ -101,14 +104,26 @@ class InfoTab extends Component {
           {this.state.openStatus && <div>Current Status: {this.state.openStatus}</div>}
           {(this.state.timeFrames.length > 0) &&
             <div>
-            Schedule:
-            {this.state.timeFrames.map((time) => {
-              if (time.hasOwnProperty('includesToday') && time.includesToday) {
-                return ( <div key={time.days}><b>{time.days}: {time.open[0].renderedTime}</b></div> )
-              } else {
-                return ( <div key={time.days}>{time.days}: {time.open[0].renderedTime}</div> )
-              }
-            })}
+              Schedule:
+              {this.state.timeFrames.map((time) => {
+                if (time.hasOwnProperty('includesToday') && time.includesToday) {
+                  return ( <div key={time.days}><b>{time.days}: {time.open[0].renderedTime}</b></div> )
+                } else {
+                  return ( <div key={time.days}>{time.days}: {time.open[0].renderedTime}</div> )
+                }
+              })}
+            </div>
+          }
+          {(this.state.popularTimes.length > 0) &&
+            <div>
+              Popular Times:
+              {this.state.popularTimes.map((time) => {
+                if (time.hasOwnProperty('days') && (time.days === 'Today')) {
+                  return ( <div key={time.days}><b>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</b></div> )
+                } else {
+                  return ( <div key={time.days}>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</div> )
+                }
+              })}
             </div>
           }
         </div>

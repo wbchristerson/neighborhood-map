@@ -64,7 +64,7 @@
 .title-block {
   display: flex;
   flex-direction: row;
-  height: 7%;
+  min-height: 7%;
 }
 
 .title-place {
