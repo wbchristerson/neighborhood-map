@@ -20,6 +20,7 @@ class InfoTab extends Component {
     timeFrames: [],
     popularTimes: [],
     rating: -1.0,
+    tip: '',
   }
 
   // fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=Target&limit=1`)
@@ -71,7 +72,13 @@ class InfoTab extends Component {
             allData.hours.timeframes : []),
           popularTimes: ((allData.hasOwnProperty('popular') && allData.popular.hasOwnProperty('timeframes')) ?
             allData.popular.timeframes : []),
-          rating: (allData.hasOwnProperty('rating') ? allData.rating : -1.0)
+          rating: (allData.hasOwnProperty('rating') ? allData.rating : -1.0),
+          tip: ((allData.hasOwnProperty('tips') &&
+            allData.tips.hasOwnProperty('groups') &&
+            (allData.tips.groups.length > 0) &&
+            allData.tips.groups[0].hasOwnProperty('items') &&
+            (allData.tips.groups[0].items.length > 0) &&
+            allData.tips.groups[0].items[0].hasOwnProperty('text')) ? allData.tips.groups[0].items[0].text : ''),
         })
       })
     })
@@ -128,7 +135,8 @@ class InfoTab extends Component {
               })}
             </div>
           }
-          {(this.state.rating >= 0.0) && <div>Rating (out of 10): {this.state.rating}</div>}
+          {(this.state.rating >= 0.0) && <div>Rating: {this.state.rating}/10</div>}
+          {this.state.tip && <div>One visitor had this to say: {this.state.tip}</div>}
         </div>
       </div>
     )
