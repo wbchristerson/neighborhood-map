@@ -64,9 +64,15 @@
 .title-block {
   display: flex;
   flex-direction: row;
+  height: 7%;
 }
 
 .title-place {
   margin-top: auto;
   margin-bottom: auto;
+}
+
+.location-style {
+  overflow: auto;
+  max-height: 93%;
 }

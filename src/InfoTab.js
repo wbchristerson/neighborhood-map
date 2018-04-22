@@ -86,20 +86,21 @@ class InfoTab extends Component {
           </IconButton>
           <div className="title-place">{this.props.currentPlace}</div>
         </div>
-        {this.state.imageSrc && <img className="image-dimensions" src={this.state.imageSrc} alt="Test"/>}
-        {this.state.address && <div>Address: {this.state.address}</div>}
-        {this.state.formattedAddress && <div>Location: {this.state.formattedAddress}</div>}
-        {this.state.coordinates.length === 2 && <div>Coordinates: ({this.state.coordinates[0]}, {this.state.coordinates[1]})</div>}
-        <div>Categories:</div>
-        {this.state.categories.map((category) => (<div key={category.id}>{category.name}</div>))}
-        {(this.state.phoneContact || this.state.twitterContact) && <div>Contact:</div>}
-        {this.state.phoneContact && <div>Phone: {this.state.phoneContact}</div>}
-        {this.state.twitterContact && <div>Twitter: {this.state.twitterContact}</div>}
-        {this.state.facebookContact && <div>Facebook: {this.state.facebookContact}</div>}
-        {this.state.url && <div>URL: {this.state.url}</div>}
-        {this.state.openStatus && <div>Current Status: {this.state.openStatus}</div>}
-        {(this.state.timeFrames.length > 0) &&
-          <div>
+        <div className="location-style">
+          {this.state.imageSrc && <img className="image-dimensions" src={this.state.imageSrc} alt="Test"/>}
+          {this.state.address && <div>Address: {this.state.address}</div>}
+          {this.state.formattedAddress && <div>Location: {this.state.formattedAddress}</div>}
+          {this.state.coordinates.length === 2 && <div>Coordinates: ({this.state.coordinates[0]}, {this.state.coordinates[1]})</div>}
+          <div>Categories:</div>
+          {this.state.categories.map((category) => (<div key={category.id}>{category.name}</div>))}
+          {(this.state.phoneContact || this.state.twitterContact) && <div>Contact:</div>}
+          {this.state.phoneContact && <div>Phone: {this.state.phoneContact}</div>}
+          {this.state.twitterContact && <div>Twitter: {this.state.twitterContact}</div>}
+          {this.state.facebookContact && <div>Facebook: {this.state.facebookContact}</div>}
+          {this.state.url && <div>URL: {this.state.url}</div>}
+          {this.state.openStatus && <div>Current Status: {this.state.openStatus}</div>}
+          {(this.state.timeFrames.length > 0) &&
+            <div>
             Schedule:
             {this.state.timeFrames.map((time) => {
               if (time.hasOwnProperty('includesToday') && time.includesToday) {
@@ -108,8 +109,9 @@ class InfoTab extends Component {
                 return ( <div key={time.days}>{time.days}: {time.open[0].renderedTime}</div> )
               }
             })}
-          </div>
-        }
+            </div>
+          }
+        </div>
       </div>
     )
   }
