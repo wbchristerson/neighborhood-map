@@ -126,9 +126,10 @@ class InfoTab extends Component {
                 {this.state.formattedAddress && <div>Location: {this.state.formattedAddress}</div>}
                 {this.state.location && !this.state.address && !this.state.formattedAddress && <div>Location: {this.state.location}</div>}
               </ListItem>}
+            {(this.state.coordinates.length === 2) &&
+              <ListItem>Coordinates: ({this.state.coordinates[0]}, {this.state.coordinates[1]})</ListItem>}
           </List>
 
-          {this.state.coordinates.length === 2 && <div>Coordinates: ({this.state.coordinates[0]}, {this.state.coordinates[1]})</div>}
           <div>Categories:</div>
           {this.state.categories.map((category) => (<div key={category.id}>{category.name}</div>))}
           {(this.state.phoneContact || this.state.twitterContact) && <div>Contact:</div>}
