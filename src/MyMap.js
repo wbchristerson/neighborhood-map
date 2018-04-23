@@ -12,7 +12,7 @@ import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps'
  *  https://github.com/tomchentw/react-google-maps/blob/master/src/components/InfoWindow.md
  */
 
-const Map = withScriptjs(withGoogleMap((props) =>
+const MyMap = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultZoom={props.zoom}
     defaultCenter={props.center}
@@ -20,7 +20,18 @@ const Map = withScriptjs(withGoogleMap((props) =>
   >
     {props.filteredPlaces.map((place) => {
       return (
-        <MyMarker key={place.title} title={place.title} position={place.location} />
+        <MyMarker
+          key={place.title}
+          title={place.title}
+          position={place.location}
+          // markerSetClicked={this.props.markerSetClicked}
+          // objectReference={this.props.objectReference}
+          // setCurrentPlace={(place) => this.props.setCurrentPlace(place)} />
+          // objectReference={props.objectReference}
+          setClicked={props.setClicked}
+          setCurrentPlace={props.setCurrentPlace}
+          currentPlace={props.currentPlace}
+        />
       )
     })}
   </GoogleMap>
@@ -86,4 +97,4 @@ const Map = withScriptjs(withGoogleMap((props) =>
 //   }
 // }
 //
-export default Map;
+export default MyMap;

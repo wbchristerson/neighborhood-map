@@ -31,14 +31,11 @@ class InfoTab extends Component {
     location: '',
   }
 
-  // fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=Target&limit=1`)
   componentDidMount() {
     fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=${this.props.currentPlace}&limit=1`)
     .then((res) => res.text())
     .then((text) => {
       let formattedResponse = JSON.parse(text).response.venues[0];
-      // console.log("Result: ", formattedResponse)
-      // console.log("Address: ", formattedResponse.location)
       this.setState({
         address: formattedResponse.location.crossStreet,
         formattedAddress: formattedResponse.location.formattedAddress[0] + ', ' + formattedResponse.location.formattedAddress[1],
@@ -51,7 +48,6 @@ class InfoTab extends Component {
       .then((res) => res.text())
       .then((text) => {
         let formattedNewResponse = JSON.parse(text)
-        // console.log("Photo List: ", formattedNewResponse.response.photos)
         let imageInfo = formattedNewResponse.response.photos.items[0]
         this.setState({
           imageSrc: imageInfo.prefix + 'original' + imageInfo.suffix
@@ -100,10 +96,6 @@ class InfoTab extends Component {
   }
 
   render() {
-    // <FontIcon className="muidocs-icon-action-home" />
-    // <IconButton iconClassName="muidocs-icon-custom-github" onClick={() => this.props.setClicked(false)} />
-    // <ActionHome/>
-    // <RaisedButton onClick={() => this.props.setClicked(false)} label="Back" style={{ margin: 12 }}/>
     return (
       <div className="search-format">
         <div className="title-block">
@@ -177,7 +169,7 @@ class InfoTab extends Component {
               </ListItem>}
             {this.state.tip &&
               <ListItem>
-                One visitor has this to say: "{this.state.tip}"
+                According to one visitor: "{this.state.tip}"
               </ListItem>}
             {this.state.menuUrl &&
               <ListItem>

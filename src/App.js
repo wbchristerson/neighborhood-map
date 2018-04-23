@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Map from './Map'
+import MyMap from './MyMap'
 import Search from './Search'
 import InfoTab from './InfoTab'
 import './App.css'
@@ -56,11 +56,20 @@ class App extends Component {
   //   .catch((error) => console.log("Error: ", error))
   // }
 
-  setClicked(status) {
+  setClicked(status) { ////////////////////////////////////////////////////////////////////////////////////
+    // this.setState({
+    //   itemClicked: !status,
+    // })
     this.setState({
       itemClicked: status,
     })
   }
+
+  // markerSetClicked(status, ref) {
+  //   ref.setState({
+  //     itemClicked: status,
+  //   })
+  // }
 
   setMarkerQuery(newQuery) {
     this.setState({
@@ -100,7 +109,7 @@ class App extends Component {
               setClicked={this.setClicked.bind(this)}
               currentPlace={this.state.currentPlace}/>
           </MuiThemeProvider>}
-        <Map
+        <MyMap
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS3Ijzo5Ona6YUsFuvRlHy1NFDEsmesoI&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `100%` }} />}
           containerElement={< div style={{ width: `80%`, height: `100vh` }} />}
@@ -108,6 +117,10 @@ class App extends Component {
           center={{ lat: 33.888428, lng: -118.393534 }}
           zoom={14}
           filteredPlaces={filteredPlaces}
+          setClicked={this.setClicked.bind(this)}
+          setCurrentPlace={this.setCurrentPlace.bind(this)}
+          currentPlace={this.currentPlace}
+          // objectReference={this}
         />
       </div>
     );
