@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import IconButton from 'material-ui/IconButton'
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
+import { List, ListItem } from 'material-ui/List'
 // import RaisedButton from 'material-ui/RaisedButton'
 // import FontIcon from 'material-ui/FontIcon'
 // import ActionHome from 'material-ui/svg-icons/action/home'
@@ -110,8 +111,20 @@ class InfoTab extends Component {
         </div>
         <div className="location-style">
           {this.state.imageSrc && <img className="image-dimensions" src={this.state.imageSrc} alt="Test"/>}
-          {this.state.address && <div>Address: {this.state.address}</div>}
-          {this.state.formattedAddress && <div>Location: {this.state.formattedAddress}</div>}
+          <List>
+            {this.state.description &&
+              <ListItem
+                // hoverColor='#62f442'
+                primaryText={<div>Description: {this.state.description}</div>}
+                // rightIcon={<HomeIcon />}
+              ></ListItem>}
+            {this.state.address &&
+              <ListItem>
+                <div>Address: {this.state.address}</div>
+                {this.state.formattedAddress && <div>Location: {this.state.formattedAddress}</div>}
+              </ListItem>}
+          </List>
+
           {this.state.coordinates.length === 2 && <div>Coordinates: ({this.state.coordinates[0]}, {this.state.coordinates[1]})</div>}
           <div>Categories:</div>
           {this.state.categories.map((category) => (<div key={category.id}>{category.name}</div>))}
@@ -149,7 +162,6 @@ class InfoTab extends Component {
           {this.state.tip && <div>One visitor had this to say: {this.state.tip}</div>}
           {this.state.menuUrl && <div>Menu: {this.state.menuUrl}</div>}
           {this.state.price && <div>Price: {this.state.price}</div>}
-          {this.state.description && <div>Description: {this.state.description}</div>}
           {(this.state.likesCount >= 0) && <div>Likes: {this.state.likesCount}</div>}
         </div>
       </div>

@@ -9,7 +9,7 @@ import escapeRegExp from 'escape-string-regexp'
 class App extends Component {
   state = {
     placesList: [
-      { title: "Roundhouse Aquarium", placeType: "", location: {lat: 33.883368, lng: -118.414595} },
+      { title: "Roundhouse Aquarium And Cafe", placeType: "cafe", location: {lat: 33.883368, lng: -118.414595} },
       { title: "Becker's Bakery & Deli", placeType: "bakery", location: {lat: 33.883937, lng: -118.410461} },
       { title: "The Kettle", placeType: "restaurant", location: {lat: 33.885366, lng: -118.409663} },
       { title: "California Pizza Kitchen", placeType: "restaurant", location: {lat: 33.899041, lng: -118.394780} },
@@ -103,7 +103,7 @@ class App extends Component {
         <Map
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS3Ijzo5Ona6YUsFuvRlHy1NFDEsmesoI&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={< div style={{ width: `80%`, height: `100vh` }} />}
+          containerElement={< div style={{ width: `70%`, height: `100vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
           center={{ lat: 33.888428, lng: -118.393534 }}
           zoom={14}
