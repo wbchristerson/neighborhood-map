@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import IconButton from 'material-ui/IconButton'
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import { List, ListItem } from 'material-ui/List'
+import ThumbUp from 'material-ui/svg-icons/action/thumb-up'
 // import RaisedButton from 'material-ui/RaisedButton'
 // import FontIcon from 'material-ui/FontIcon'
 // import ActionHome from 'material-ui/svg-icons/action/home'
@@ -128,45 +129,69 @@ class InfoTab extends Component {
               </ListItem>}
             {(this.state.coordinates.length === 2) &&
               <ListItem>Coordinates: ({this.state.coordinates[0]}, {this.state.coordinates[1]})</ListItem>}
+            {(this.state.categories.length > 0) &&
+              <ListItem>
+                Categories:
+                {this.state.categories.map((category) => (<div key={category.id}>{category.name}</div>))}
+              </ListItem>}
+            {(this.state.phoneContact || this.state.twitterContact || this.state.facebookContact) &&
+              <ListItem>
+                Contact:
+                {this.state.phoneContact && <div>Phone: {this.state.phoneContact}</div>}
+                {this.state.twitterContact && <div>Twitter: {this.state.twitterContact}</div>}
+                {this.state.facebookContact && <div>Facebook: {this.state.facebookContact}</div>}
+              </ListItem>}
+            {this.state.url &&
+              <ListItem>
+                URL: {this.state.url}
+              </ListItem>}
+            {this.state.openStatus &&
+              <ListItem>
+                Current Status: {this.state.openStatus}
+              </ListItem>}
+            {(this.state.timeFrames.length > 0) &&
+              <ListItem>
+                Schedule:
+                {this.state.timeFrames.map((time) => {
+                  if (time.hasOwnProperty('includesToday') && time.includesToday) {
+                    return ( <div key={time.days}><b>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</b></div> )
+                  } else {
+                    return ( <div key={time.days}>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</div> )
+                  }
+                })}
+              </ListItem>}
+            {(this.state.popularTimes.length > 0) &&
+              <ListItem>
+                Popular Times:
+                {this.state.popularTimes.map((time) => {
+                  if (time.hasOwnProperty('days') && (time.days === 'Today')) {
+                    return ( <div key={time.days}><b>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</b></div> )
+                  } else {
+                    return ( <div key={time.days}>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</div> )
+                  }
+                })}
+              </ListItem>}
+            {(this.state.rating >= 0.0) &&
+              <ListItem>
+                Rating: {this.state.rating}/10
+              </ListItem>}
+            {this.state.tip &&
+              <ListItem>
+                One visitor has this to say: "{this.state.tip}"
+              </ListItem>}
+            {this.state.menuUrl &&
+              <ListItem>
+                Menu (provided courtesy of Foursquare): {this.state.menuUrl}
+              </ListItem>}
+            {this.state.price &&
+              <ListItem>
+                Price Tier: {this.state.price}
+              </ListItem>}
+            {(this.state.likesCount >= 0) &&
+              <ListItem>
+                <ThumbUp/> {this.state.likesCount}
+              </ListItem>}
           </List>
-
-          <div>Categories:</div>
-          {this.state.categories.map((category) => (<div key={category.id}>{category.name}</div>))}
-          {(this.state.phoneContact || this.state.twitterContact) && <div>Contact:</div>}
-          {this.state.phoneContact && <div>Phone: {this.state.phoneContact}</div>}
-          {this.state.twitterContact && <div>Twitter: {this.state.twitterContact}</div>}
-          {this.state.facebookContact && <div>Facebook: {this.state.facebookContact}</div>}
-          {this.state.url && <div>URL: {this.state.url}</div>}
-          {this.state.openStatus && <div>Current Status: {this.state.openStatus}</div>}
-          {(this.state.timeFrames.length > 0) &&
-            <div>
-              Schedule:
-              {this.state.timeFrames.map((time) => {
-                if (time.hasOwnProperty('includesToday') && time.includesToday) {
-                  return ( <div key={time.days}><b>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</b></div> )
-                } else {
-                  return ( <div key={time.days}>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</div> )
-                }
-              })}
-            </div>
-          }
-          {(this.state.popularTimes.length > 0) &&
-            <div>
-              Popular Times:
-              {this.state.popularTimes.map((time) => {
-                if (time.hasOwnProperty('days') && (time.days === 'Today')) {
-                  return ( <div key={time.days}><b>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</b></div> )
-                } else {
-                  return ( <div key={time.days}>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</div> )
-                }
-              })}
-            </div>
-          }
-          {(this.state.rating >= 0.0) && <div>Rating: {this.state.rating}/10</div>}
-          {this.state.tip && <div>One visitor had this to say: {this.state.tip}</div>}
-          {this.state.menuUrl && <div>Menu: {this.state.menuUrl}</div>}
-          {this.state.price && <div>Price: {this.state.price}</div>}
-          {(this.state.likesCount >= 0) && <div>Likes: {this.state.likesCount}</div>}
         </div>
       </div>
     )
