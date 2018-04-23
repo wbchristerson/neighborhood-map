@@ -27,6 +27,7 @@ class InfoTab extends Component {
     price: '',
     description: '',
     likesCount: -1,
+    location: '',
   }
 
   // fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=Target&limit=1`)
@@ -90,6 +91,7 @@ class InfoTab extends Component {
           price: (allData.hasOwnProperty('price') && allData.price.hasOwnProperty('message')) ? allData.price.message : '',
           description: allData.hasOwnProperty('description') ? allData.description : '',
           likesCount: (allData.hasOwnProperty('likes') && allData.likes.hasOwnProperty('count')) ? allData.likes.count : -1,
+          location: ((allData.hasOwnProperty('location') && allData.location.hasOwnProperty('address')) ? allData.location.address : '')
         })
       })
     })
@@ -118,10 +120,11 @@ class InfoTab extends Component {
                 primaryText={<div>Description: {this.state.description}</div>}
                 // rightIcon={<HomeIcon />}
               ></ListItem>}
-            {this.state.address &&
+            {(this.state.address || this.state.location) &&
               <ListItem>
-                <div>Address: {this.state.address}</div>
+                {!this.state.location && <div>Address: {this.state.address}</div>}
                 {this.state.formattedAddress && <div>Location: {this.state.formattedAddress}</div>}
+                {this.state.location && !this.state.address && !this.state.formattedAddress && <div>Location: {this.state.location}</div>}
               </ListItem>}
           </List>
 
