@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Marker, InfoWindow, StreetViewPanorama, OverlayView } from 'react-google-maps'
+import { Marker, InfoWindow } from 'react-google-maps'
 // import { StreetView } from 'react-google-map-street-view'
+import Panorama from './Panorama'
 
 class MyMarker extends Component {
   state = {
@@ -28,11 +29,6 @@ class MyMarker extends Component {
       this.props.setCurrentPlace(this.props.title)
       this.props.setClicked(true)
     }
-    // if (this.state.isOpen) {
-    //   this.props.markerSetClicked(false, this.props.objectReference)
-    // } else {
-    //   this.props.markerSetClicked(true, this.props.objectReference)
-    // }
     this.setState((prevState) => ({
       isOpen: !prevState.isOpen,
     }))
@@ -44,7 +40,6 @@ class MyMarker extends Component {
   // })
 
   render() {
-    // console.log("Here: ", this.state.image)
     return (
       <Marker
         key={this.props.title}
@@ -54,14 +49,24 @@ class MyMarker extends Component {
       >
         {this.state.isOpen &&
           <InfoWindow onCloseClick={this.onToggleOpen}>
-            <div>{this.props.title}</div>
+            <div style={{width: `300px`, height: `300px`}}>
+              <div>{this.props.title}</div>
+              <Panorama position={this.props.position}/>
+            </div>
           </InfoWindow>}
       </Marker>
     )
   }
+  // <div>{this.props.title}</div>
+  // <StreetViewPanorama style={{width: 50, height: 50}} defaultPosition={{ lat: 49.2853171, lng: -123.1119202 }} visible/>
 
   // <img src="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&h=350" />
-  // <StreetViewPanorama style={{width: 50, height: 50}} defaultPosition={{ lat: 49.2853171, lng: -123.1119202 }} visible/>
+
+
+  // <StreetViewPanorama style={{width: 50}} defaultPosition={{ lat: 49.2853171, lng: -123.1119202 }} visible>
+  //
+  // </StreetViewPanorama>
+
 
   // <div>
   //   <div>{this.props.title}</div>

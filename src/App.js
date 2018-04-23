@@ -9,7 +9,7 @@ import escapeRegExp from 'escape-string-regexp'
 class App extends Component {
   state = {
     placesList: [
-      { title: "Roundhouse Aquarium And Cafe", placeType: "cafe", location: {lat: 33.883368, lng: -118.414595} },
+      { title: "Roundhouse Aquarium And Cafe", placeType: "cafe", location: {lat: 33.883368, lng: -118.414595}, offset: [0.0, 0.0] },
       { title: "Becker's Bakery & Deli", placeType: "bakery", location: {lat: 33.883937, lng: -118.410461} },
       { title: "The Kettle", placeType: "restaurant", location: {lat: 33.885366, lng: -118.409663} },
       { title: "California Pizza Kitchen", placeType: "restaurant", location: {lat: 33.899041, lng: -118.394780} },
