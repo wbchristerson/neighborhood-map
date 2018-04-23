@@ -1,13 +1,15 @@
 import React from 'react'
+import MyMarker from './MyMarker'
+import { withScriptjs, withGoogleMap, GoogleMap } from 'react-google-maps'
 // import GoogleMapReact from 'google-map-react'
 // import Marker from 'google-map-react'
 
 
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from 'react-google-maps'
 
 
-/*  The structure of this component is based on the example provided here:
- *  https://tomchentw.github.io/react-google-maps/
+/*  The structure of this component is based on the examples provided here:
+ *  https://tomchentw.github.io/react-google-maps/ and here:
+ *  https://github.com/tomchentw/react-google-maps/blob/master/src/components/InfoWindow.md
  */
 
 const Map = withScriptjs(withGoogleMap((props) =>
@@ -18,12 +20,15 @@ const Map = withScriptjs(withGoogleMap((props) =>
   >
     {props.filteredPlaces.map((place) => {
       return (
-        <Marker key={place.title} title={place.title} position={place.location} />
+        <MyMarker key={place.title} title={place.title} position={place.location} />
       )
     })}
   </GoogleMap>
 ))
 
+// <Marker key={place.title} title={place.title} position={place.location}>
+//   <InfoWindow><div>Something</div></InfoWindow>
+// </Marker>
 
 
 //
