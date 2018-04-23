@@ -23,7 +23,7 @@ class App extends Component {
       { title: "Islands Restaurant", placeType: "restaurant", location: {lat: 33.899627, lng: -118.394053} },
       { title: "El Sombrero", placeType: "restaurant", location: {lat: 33.874037, lng: -118.394050} },
       { title: "Von's", placeType: "grocery store", location: {lat: 33.885148, lng: -118.407879} },
-      { title: "Barnes and Noble", placeType: "books", location: {lat: 33.900680, lng: -118.380849} },
+      { title: "Barnes and Noble", placeType: "books", location: {lat: 33.900680, lng: -118.380349} },
       { title: "Mira Costa High School", placeType: "school", location: {lat: 33.873556, lng: -118.389907} },
       { title: "Manhattan Beach Library", placeType: "books", location: {lat: 33.887115, lng: -118.410357} },
       { title: "Trader Joe's", placeType: "grocery store", location: {lat: 33.900345, lng: -118.381278} }
