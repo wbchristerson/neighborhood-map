@@ -32,9 +32,13 @@ class App extends Component {
     imageSrc: '',
     itemClicked: false, // whether a specific item has been clicked
     currentPlace: '', // place being considered
+    filteredPlaces: [],
     // currentLocation: {}, // lat, lng coordinates of location
   }
 
+  componentDidMount() {
+    this.resetFilteredPlaces()
+  }
   // componentDidMount() {
   //   fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=1`)
   //   .then((res) => res.text())
@@ -83,14 +87,29 @@ class App extends Component {
     })
   }
 
+  resetFilteredPlaces() {
+    this.setState({
+      filteredPlaces: this.state.placesList
+    })
+  }
+
+  updateFilteredPlaces(query) {
+    const match = new RegExp(escapeRegExp(query), 'i')
+    this.setState({
+      filteredPlaces: this.state.placesList.filter((place) => match.test(place.title))
+    })
+    // if (this.state.filterQuery) {
+    //   const match = new RegExp(escapeRegExp(this.state.filterQuery), 'i')
+    //   filteredPlaces = this.state.placesList.filter((place) => match.test(place.title))
+    // } else {
+    //   filteredPlaces = this.state.placesList
+    // }
+  }
+
   render() {
-    let filteredPlaces
-    if (this.state.filterQuery) {
-      const match = new RegExp(escapeRegExp(this.state.filterQuery), 'i')
-      filteredPlaces = this.state.placesList.filter((place) => match.test(place.title))
-    } else {
-      filteredPlaces = this.state.placesList
-    }
+    // this.setState({
+    //   filteredPlaces: filteredPlaces
+    // })
 
     return (
       <div className="app-format">
@@ -101,6 +120,7 @@ class App extends Component {
               setCurrentPlace={this.setCurrentPlace.bind(this)}
               setClicked={this.setClicked.bind(this)}
               setMarkerQuery={this.setMarkerQuery.bind(this)}
+              updateFilteredPlaces={this.updateFilteredPlaces.bind(this)}
             />
           </MuiThemeProvider>}
         {this.state.itemClicked &&
@@ -116,10 +136,11 @@ class App extends Component {
           mapElement={<div style={{ height: `100%` }} />}
           center={{ lat: 33.888428, lng: -118.393534 }}
           zoom={14}
-          filteredPlaces={filteredPlaces}
+          filteredPlaces={this.state.filteredPlaces}
           setClicked={this.setClicked.bind(this)}
           setCurrentPlace={this.setCurrentPlace.bind(this)}
           currentPlace={this.state.currentPlace}
+          resetFilteredPlaces={this.resetFilteredPlaces.bind(this)}
           // objectReference={this}
         />
       </div>

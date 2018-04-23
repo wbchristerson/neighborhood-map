@@ -31,6 +31,7 @@ const MyMap = withScriptjs(withGoogleMap((props) =>
           setClicked={props.setClicked}
           setCurrentPlace={props.setCurrentPlace}
           currentPlace={props.currentPlace}
+          resetFilteredPlaces={props.resetFilteredPlaces}
         />
       )
     })}

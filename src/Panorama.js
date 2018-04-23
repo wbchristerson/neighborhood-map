@@ -1,5 +1,5 @@
 import React from 'react'
-import { withScriptjs, withGoogleMap, GoogleMap, StreetViewPanorama, OverlayView } from 'react-google-maps'
+import { withScriptjs, withGoogleMap, GoogleMap, StreetViewPanorama } from 'react-google-maps'
 import { compose, withProps } from 'recompose'
 
 // This component is based on the example by Tom Chen for
@@ -12,7 +12,6 @@ const Panorama = compose(
     loadingElement: <div style={{ height: `100%` }} />,
     mapElement: <div style={{ height: `100%` }} />,
     containerElement: <div style={{ width: `300px`, height: `280px` }} />,
-    center: { lat: 49.2853171, lng: -123.1119202 },
   }),
   withScriptjs,
   withGoogleMap

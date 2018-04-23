@@ -40,6 +40,7 @@ class Search extends Component {
       query: query
     })
     this.props.setMarkerQuery(query)
+    this.props.updateFilteredPlaces(query)
   }
 
   // <Subheader>Recent chats</Subheader>
