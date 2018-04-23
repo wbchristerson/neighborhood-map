@@ -119,7 +119,7 @@ class App extends Component {
           filteredPlaces={filteredPlaces}
           setClicked={this.setClicked.bind(this)}
           setCurrentPlace={this.setCurrentPlace.bind(this)}
-          currentPlace={this.currentPlace}
+          currentPlace={this.state.currentPlace}
           // objectReference={this}
         />
       </div>
