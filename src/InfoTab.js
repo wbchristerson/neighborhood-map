@@ -97,14 +97,14 @@ class InfoTab extends Component {
 
   backToSearch = () => {
     this.props.setClicked(false)
-    this.props.resetFilteredPlaces
+    this.props.resetFilteredPlaces()
   }
 
   render() {
     return (
       <div className="search-format">
         <div className="title-block">
-          <IconButton onClick={() => this.backToSearch} tooltip="Font Icon">
+          <IconButton onClick={this.backToSearch} tooltip="Font Icon">
             <ArrowBack/>
           </IconButton>
           <div className="title-place">{this.props.currentPlace}</div>
