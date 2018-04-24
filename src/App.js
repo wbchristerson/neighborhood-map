@@ -7,6 +7,8 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import escapeRegExp from 'escape-string-regexp'
 
 class App extends Component {
+  // 33.856853, lng: -118.400588
+  // {lat: 33.887159533767874, lng: -118.41460291075771}
   state = {
     placesList: [
       { title: "Roundhouse Aquarium And Cafe", placeType: "cafe", location: {lat: 33.883368, lng: -118.414595}, forStreetView: {lat: 33.883355, lng: -118.414639}},
@@ -14,20 +16,20 @@ class App extends Component {
       { title: "The Kettle", placeType: "restaurant", location: {lat: 33.885366, lng: -118.409663}, forStreetView: {lat: 33.885366, lng: -118.409663}},
       { title: "California Pizza Kitchen", placeType: "restaurant", location: {lat: 33.899041, lng: -118.394780}, forStreetView: {lat: 33.898773, lng: -118.394781} },
       { title: "Whole Foods", placeType: "grocery store", location: {lat: 33.906682, lng: -118.392783}, forStreetView: {lat: 33.906078, lng: -118.392783}},
+      { title: "Ralphs", placeType: "grocery store", location: {lat: 33.896281, lng: -118.394272}, forStreetView: {lat: 33.896132, lng: -118.394689}},
+      { title: "Pages Book Store", placeType: "books", location: {lat: 33.883141, lng: -118.409656}, forStreetView: {lat: 33.883016, lng: -118.409798}},
+      { title: "Peet's Coffee & Tea", placeType: "cafe", location: {lat: 33.885273, lng: -118.408892}, forStreetView: {lat: 33.885352, lng: -118.408969}},
+      { title: "Martha's 22nd Street Grill", placeType: "restaurant", location: {lat: 33.869321, lng: -118.403978}, forStreetView: {lat: 33.869208, lng: -118.403946}},
+      { title: "Beach, Manhattan Beach", placeType: "beach", location: {lat: 33.879119, lng: -118.410365}, forStreetView: {lat: 33.883119, lng: -118.412365}},
+      { title: "Target", placeType: "grocery store", location: {lat: 33.888592, lng: -118.394307}, forStreetView: {lat: 33.888528, lng: -118.394962}},
+      { title: "Islands Restaurant", placeType: "restaurant", location: {lat: 33.899627, lng: -118.394053}, forStreetView: {lat: 33.899627, lng: -118.394053}},
 
-      { title: "Ralphs", placeType: "grocery store", location: {lat: 33.896281, lng: -118.394272} },
-      { title: "Pages Book Store", placeType: "books", location: {lat: 33.883141, lng: -118.409656} },
-      { title: "Peet's Coffee & Tea", placeType: "cafe", location: {lat: 33.885273, lng: -118.408892} },
-      { title: "Martha's 22nd Street Grill", placeType: "restaurant", location: {lat: 33.869321, lng: -118.403978} },
-      { title: "Beach, Manhattan Beach", placeType: "beach", location: {lat: 33.887159533767874, lng: -118.41460291075771} },
-      { title: "Target", placeType: "grocery store", location: {lat: 33.888592, lng: -118.394307} },
-      { title: "Islands Restaurant", placeType: "restaurant", location: {lat: 33.899627, lng: -118.394053} },
-      { title: "El Sombrero", placeType: "restaurant", location: {lat: 33.874037, lng: -118.394050} },
-      { title: "Von's", placeType: "grocery store", location: {lat: 33.885148, lng: -118.407879} },
-      { title: "Barnes and Noble", placeType: "books", location: {lat: 33.900680, lng: -118.380349} },
-      { title: "Mira Costa High School", placeType: "school", location: {lat: 33.873556, lng: -118.389907} },
-      { title: "Manhattan Beach Library", placeType: "books", location: {lat: 33.887115, lng: -118.410357} },
-      { title: "Trader Joe's", placeType: "grocery store", location: {lat: 33.900345, lng: -118.381278} }
+      { title: "El Sombrero", placeType: "restaurant", location: {lat: 33.874037, lng: -118.394050}, forStreetView: {lat: 33.873124, lng: -118.393852}},
+      { title: "Von's", placeType: "grocery store", location: {lat: 33.885148, lng: -118.407879}, forStreetView: {lat: 33.885148, lng: -118.407879}},
+      { title: "Barnes and Noble", placeType: "books", location: {lat: 33.900680, lng: -118.380349}, forStreetView: {lat: 33.900680, lng: -118.380349}},
+      { title: "Mira Costa High School", placeType: "school", location: {lat: 33.873556, lng: -118.389907}, forStreetView: {lat: 33.873556, lng: -118.389907}},
+      { title: "Manhattan Beach Library", placeType: "books", location: {lat: 33.887115, lng: -118.410357}, forStreetView: {lat: 33.887115, lng: -118.410357}},
+      { title: "Trader Joe's", placeType: "grocery store", location: {lat: 33.900345, lng: -118.381278}, forStreetView: {lat: 33.900345, lng: -118.381278}}
     ],
     filterQuery: '',
     imageSrc: '',
