@@ -81,3 +81,7 @@
 .list-overrides:hover {
   cursor: default;
 }
+
+.marker-title-style {
+  text-align: center;
+}

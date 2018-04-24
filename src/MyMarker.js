@@ -51,7 +51,7 @@ class MyMarker extends Component {
         {this.state.isOpen &&
           <InfoWindow onCloseClick={this.onToggleOpen}>
             <div style={{width: `300px`, height: `300px`}}>
-              <div>{this.props.title}</div>
+              <div className="marker-title-style"><b>{this.props.title}</b></div>
               <Panorama position={this.props.position} forStreetView={this.props.forStreetView}/>
             </div>
           </InfoWindow>}
