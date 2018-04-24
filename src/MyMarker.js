@@ -3,6 +3,8 @@ import { Marker, InfoWindow } from 'react-google-maps'
 // import { StreetView } from 'react-google-map-street-view'
 import Panorama from './Panorama'
 
+// import scriptLoader from 'react-async-script-loader'
+
 class MyMarker extends Component {
   state = {
     isOpen: false,
@@ -47,6 +49,7 @@ class MyMarker extends Component {
         title={this.props.title}
         position={this.props.position}
         onClick={this.onToggleOpen}
+        animation={(this.props.title === this.props.currentPlace) ? 2 : 0}
       >
         {this.state.isOpen &&
           <InfoWindow onCloseClick={this.onToggleOpen}>
@@ -85,4 +88,7 @@ class MyMarker extends Component {
   // </div>
 }
 
+// export default scriptLoader(
+//   ["https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyCS3Ijzo5Ona6YUsFuvRlHy1NFDEsmesoI"]
+// )(MyMarker)
 export default MyMarker;

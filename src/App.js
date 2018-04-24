@@ -135,7 +135,7 @@ class App extends Component {
         <MyMap
           googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS3Ijzo5Ona6YUsFuvRlHy1NFDEsmesoI&v=3.exp&libraries=geometry,drawing,places"
           loadingElement={<div style={{ height: `100%` }} />}
-          containerElement={< div style={{ width: `80%`, height: `100vh` }} />}
+          containerElement={<div style={{ width: `80%`, height: `100vh` }} />}
           mapElement={<div style={{ height: `100%` }} />}
           center={{ lat: 33.888428, lng: -118.393534 }}
           zoom={14}
