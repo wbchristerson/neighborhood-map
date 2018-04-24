@@ -123,27 +123,27 @@ class App extends Component {
     // })
 
     return (
-      <div className="app-format">
-        {!this.state.itemClicked &&
-          <MuiThemeProvider>
-            <Search
-              placesList={this.state.placesList}
-              setCurrentPlace={this.setCurrentPlace.bind(this)}
-              setClicked={this.setClicked.bind(this)}
-              setMarkerQuery={this.setMarkerQuery.bind(this)}
-              setAnimationConstant={this.setAnimationConstant.bind(this)}
-              updateFilteredPlaces={this.updateFilteredPlaces.bind(this)}
-            />
-          </MuiThemeProvider>}
-        {this.state.itemClicked &&
-          <MuiThemeProvider>
-            <InfoTab
-              setClicked={this.setClicked.bind(this)}
-              resetFilteredPlaces={this.resetFilteredPlaces.bind(this)}
-              currentPlace={this.state.currentPlace}/>
-          </MuiThemeProvider>}
-        <div className="map-block">
-          <div className="welcome-sign">Come Visit Manhattan Beach!</div>
+      <div>
+        <div className="welcome-sign">Come Visit Manhattan Beach!</div>
+        <div className="app-format">
+          {!this.state.itemClicked &&
+            <MuiThemeProvider>
+              <Search
+                placesList={this.state.placesList}
+                setCurrentPlace={this.setCurrentPlace.bind(this)}
+                setClicked={this.setClicked.bind(this)}
+                setMarkerQuery={this.setMarkerQuery.bind(this)}
+                setAnimationConstant={this.setAnimationConstant.bind(this)}
+                updateFilteredPlaces={this.updateFilteredPlaces.bind(this)}
+              />
+            </MuiThemeProvider>}
+          {this.state.itemClicked &&
+            <MuiThemeProvider>
+              <InfoTab
+                setClicked={this.setClicked.bind(this)}
+                resetFilteredPlaces={this.resetFilteredPlaces.bind(this)}
+                currentPlace={this.state.currentPlace}/>
+            </MuiThemeProvider>}
           <MyMap
             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS3Ijzo5Ona6YUsFuvRlHy1NFDEsmesoI&v=3.exp&libraries=geometry,drawing,places"
             loadingElement={<div style={{ height: `100%` }} />}
