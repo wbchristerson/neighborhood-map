@@ -97,6 +97,7 @@ class InfoTab extends Component {
 
   backToSearch = () => {
     this.props.setClicked(false)
+    // this.props.setCurrentPlace('')
     this.props.resetFilteredPlaces()
   }
 

@@ -103,6 +103,8 @@ class Search extends Component {
                 rightIcon={optionalIcon}
                 // rightIcon={<HomeIcon />}
                 onClick={() => {
+                  this.props.setAnimationConstant(1)
+                  setTimeout(() => this.props.setAnimationConstant(0), 2000)
                   this.props.setCurrentPlace(place.title)
                   this.props.setClicked(true)
                 }}

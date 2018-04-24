@@ -33,6 +33,7 @@ const MyMap = withScriptjs(withGoogleMap((props) =>
           currentPlace={props.currentPlace}
           resetFilteredPlaces={props.resetFilteredPlaces}
           forStreetView={place.forStreetView}
+          animationConstant={props.animationConstant}
         />
       )
     })}

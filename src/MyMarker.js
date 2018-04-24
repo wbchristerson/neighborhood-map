@@ -8,6 +8,7 @@ import Panorama from './Panorama'
 class MyMarker extends Component {
   state = {
     isOpen: false,
+    animationConstant: 0,
   }
 
   // componentDidMount() {
@@ -42,6 +43,7 @@ class MyMarker extends Component {
   //   y: -(height / 2),
   // })
 
+  // animation={(this.props.title === this.props.currentPlace) ? 2 : 0}
   render() {
     return (
       <Marker
@@ -49,7 +51,7 @@ class MyMarker extends Component {
         title={this.props.title}
         position={this.props.position}
         onClick={this.onToggleOpen}
-        animation={(this.props.title === this.props.currentPlace) ? 2 : 0}
+        animation={(this.props.title === this.props.currentPlace) ? this.props.animationConstant : 0}
       >
         {this.state.isOpen &&
           <InfoWindow onCloseClick={this.onToggleOpen}>

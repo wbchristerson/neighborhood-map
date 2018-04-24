@@ -35,6 +35,7 @@ class App extends Component {
     itemClicked: false, // whether a specific item has been clicked
     currentPlace: '', // place being considered
     filteredPlaces: [],
+    animationConstant: 0,
     // currentLocation: {}, // lat, lng coordinates of location
   }
 
@@ -79,13 +80,21 @@ class App extends Component {
 
   setMarkerQuery(newQuery) {
     this.setState({
-      filterQuery: newQuery
+      filterQuery: newQuery,
     })
   }
 
   setCurrentPlace(name) {
     this.setState({
       currentPlace: name,
+    })
+  }
+
+  // a value in {0,1,2} for the type of animation displayed for the currently
+  // selected place as given by currentPlace
+  setAnimationConstant(animationType) {
+    this.setState({
+      animationConstant: animationType,
     })
   }
 
@@ -122,6 +131,7 @@ class App extends Component {
               setCurrentPlace={this.setCurrentPlace.bind(this)}
               setClicked={this.setClicked.bind(this)}
               setMarkerQuery={this.setMarkerQuery.bind(this)}
+              setAnimationConstant={this.setAnimationConstant.bind(this)}
               updateFilteredPlaces={this.updateFilteredPlaces.bind(this)}
             />
           </MuiThemeProvider>}
@@ -144,6 +154,7 @@ class App extends Component {
           setCurrentPlace={this.setCurrentPlace.bind(this)}
           currentPlace={this.state.currentPlace}
           resetFilteredPlaces={this.resetFilteredPlaces.bind(this)}
+          animationConstant={this.state.animationConstant}
           // objectReference={this}
         />
       </div>
