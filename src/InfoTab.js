@@ -95,11 +95,16 @@ class InfoTab extends Component {
     .catch((error) => console.log("Error: ", error))
   }
 
+  backToSearch = () => {
+    this.props.setClicked(false)
+    this.props.resetFilteredPlaces
+  }
+
   render() {
     return (
       <div className="search-format">
         <div className="title-block">
-          <IconButton onClick={() => this.props.setClicked(false)} tooltip="Font Icon">
+          <IconButton onClick={() => this.backToSearch} tooltip="Font Icon">
             <ArrowBack/>
           </IconButton>
           <div className="title-place">{this.props.currentPlace}</div>
@@ -169,7 +174,7 @@ class InfoTab extends Component {
               </ListItem>}
             {this.state.tip &&
               <ListItem>
-                According to one visitor: "{this.state.tip}"
+                One visitor had this to say: "{this.state.tip}"
               </ListItem>}
             {this.state.menuUrl &&
               <ListItem>

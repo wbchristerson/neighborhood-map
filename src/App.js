@@ -9,11 +9,12 @@ import escapeRegExp from 'escape-string-regexp'
 class App extends Component {
   state = {
     placesList: [
-      { title: "Roundhouse Aquarium And Cafe", placeType: "cafe", location: {lat: 33.883368, lng: -118.414595}, offset: [0.0, 0.0] },
-      { title: "Becker's Bakery & Deli", placeType: "bakery", location: {lat: 33.883937, lng: -118.410461} },
-      { title: "The Kettle", placeType: "restaurant", location: {lat: 33.885366, lng: -118.409663} },
-      { title: "California Pizza Kitchen", placeType: "restaurant", location: {lat: 33.899041, lng: -118.394780} },
-      { title: "Whole Foods", placeType: "grocery store", location: {lat: 33.906682, lng: -118.392783} },
+      { title: "Roundhouse Aquarium And Cafe", placeType: "cafe", location: {lat: 33.883368, lng: -118.414595}, forStreetView: {lat: 33.883355, lng: -118.414639}},
+      { title: "Becker's Bakery & Deli", placeType: "bakery", location: {lat: 33.883937, lng: -118.410461}, forStreetView: {lat: 33.883937, lng: -118.410461}},
+      { title: "The Kettle", placeType: "restaurant", location: {lat: 33.885366, lng: -118.409663}, forStreetView: {lat: 33.885366, lng: -118.409663}},
+      { title: "California Pizza Kitchen", placeType: "restaurant", location: {lat: 33.899041, lng: -118.394780}, forStreetView: {lat: 33.898773, lng: -118.394781} },
+      { title: "Whole Foods", placeType: "grocery store", location: {lat: 33.906682, lng: -118.392783}, forStreetView: {lat: 33.906078, lng: -118.392783}},
+
       { title: "Ralphs", placeType: "grocery store", location: {lat: 33.896281, lng: -118.394272} },
       { title: "Pages Book Store", placeType: "books", location: {lat: 33.883141, lng: -118.409656} },
       { title: "Peet's Coffee & Tea", placeType: "cafe", location: {lat: 33.885273, lng: -118.408892} },
@@ -127,6 +128,7 @@ class App extends Component {
           <MuiThemeProvider>
             <InfoTab
               setClicked={this.setClicked.bind(this)}
+              resetFilteredPlaces={this.resetFilteredPlaces.bind(this)}
               currentPlace={this.state.currentPlace}/>
           </MuiThemeProvider>}
         <MyMap

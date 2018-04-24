@@ -32,6 +32,7 @@ const MyMap = withScriptjs(withGoogleMap((props) =>
           setCurrentPlace={props.setCurrentPlace}
           currentPlace={props.currentPlace}
           resetFilteredPlaces={props.resetFilteredPlaces}
+          forStreetView={place.forStreetView}
         />
       )
     })}
