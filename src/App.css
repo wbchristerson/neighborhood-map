@@ -40,7 +40,7 @@
 }
 
 .search-locations {
-  width: 94%;
+  width: 92%;
   padding: 10px 3% 10px 3%;
   /* background-image: url('./icons/search.svg'); */
   /* background-repeat: no-repeat; */
@@ -84,4 +84,20 @@
 
 .marker-title-style {
   text-align: center;
+}
+
+.map-block {
+  width: 100%;
+}
+
+.welcome-sign {
+  height: 5vh;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  background: linear-gradient(to right, #65f442, #47ced8);
+  color: black;
+  /* linear-gradient(to right, #ce2e1c, #f2b721); */
+  font: bold 1.2em "Fira Sans", serif;
+  font-weight: 400;
 }
