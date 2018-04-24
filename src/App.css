@@ -89,11 +89,9 @@
 .welcome-sign {
   height: 5vh;
   text-align: center;
-  /* margin-top: auto;
-  margin-bottom: auto; */
-  background: linear-gradient(to right, #65f442, #47ced8);
+  background-image: url('downtown.jpg');
+  /* background: linear-gradient(to right, #65f442, #47ced8); */
   color: black;
-  /* linear-gradient(to right, #ce2e1c, #f2b721); */
   font: bold 1.2em "Fira Sans", serif;
   font-weight: 400;
 }

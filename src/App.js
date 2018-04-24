@@ -124,7 +124,7 @@ class App extends Component {
 
     return (
       <div>
-        <div className="welcome-sign">Come Visit Manhattan Beach!</div>
+        <div className="welcome-sign">Come Visit Manhattan Beach, California!</div>
         <div className="app-format">
           {!this.state.itemClicked &&
             <MuiThemeProvider>
