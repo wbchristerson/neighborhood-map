@@ -23,13 +23,12 @@ class App extends Component {
       { title: "Beach, Manhattan Beach", placeType: "beach", location: {lat: 33.879119, lng: -118.410365}, forStreetView: {lat: 33.883119, lng: -118.412365}},
       { title: "Target", placeType: "grocery store", location: {lat: 33.888592, lng: -118.394307}, forStreetView: {lat: 33.888528, lng: -118.394962}},
       { title: "Islands Restaurant", placeType: "restaurant", location: {lat: 33.899627, lng: -118.394053}, forStreetView: {lat: 33.899627, lng: -118.394053}},
-
       { title: "El Sombrero", placeType: "restaurant", location: {lat: 33.874037, lng: -118.394050}, forStreetView: {lat: 33.873124, lng: -118.393852}},
-      { title: "Von's", placeType: "grocery store", location: {lat: 33.885148, lng: -118.407879}, forStreetView: {lat: 33.885148, lng: -118.407879}},
-      { title: "Barnes and Noble", placeType: "books", location: {lat: 33.900680, lng: -118.380349}, forStreetView: {lat: 33.900680, lng: -118.380349}},
-      { title: "Mira Costa High School", placeType: "school", location: {lat: 33.873556, lng: -118.389907}, forStreetView: {lat: 33.873556, lng: -118.389907}},
-      { title: "Manhattan Beach Library", placeType: "books", location: {lat: 33.887115, lng: -118.410357}, forStreetView: {lat: 33.887115, lng: -118.410357}},
-      { title: "Trader Joe's", placeType: "grocery store", location: {lat: 33.900345, lng: -118.381278}, forStreetView: {lat: 33.900345, lng: -118.381278}}
+      { title: "Von's", placeType: "grocery store", location: {lat: 33.885148, lng: -118.407879}, forStreetView: {lat: 33.885682, lng: -118.408008}},
+      { title: "Barnes and Noble", placeType: "books", location: {lat: 33.900680, lng: -118.380349}, forStreetView: {lat:33.900821, lng: -118.380866}},
+      { title: "Mira Costa High School", placeType: "school", location: {lat: 33.873556, lng: -118.389907}, forStreetView: {lat: 33.872906, lng: -118.389748}},
+      { title: "Manhattan Beach Library", placeType: "books", location: {lat: 33.887115, lng: -118.410357}, forStreetView: {lat: 33.886763, lng: -118.410652}},
+      { title: "Trader Joe's", placeType: "grocery store", location: {lat: 33.900345, lng: -118.381278}, forStreetView: {lat: 33.900818, lng: -118.381172}}
     ],
     filterQuery: '',
     imageSrc: '',
