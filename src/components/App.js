@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import MyMap from './MyMap'
 import Search from './Search'
 import InfoTab from './InfoTab'
-import './App.css'
+import '../App.css'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import escapeRegExp from 'escape-string-regexp'
 

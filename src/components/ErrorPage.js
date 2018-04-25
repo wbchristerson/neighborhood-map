@@ -1,7 +1,7 @@
 import React from 'react'
-import hibiscus from './images/hibiscus.jpg'
-import skyline from './images/skyline.jpg'
-import sunset from './images/sunset.jpg'
+import hibiscus from '../images/hibiscus.jpg'
+import skyline from '../images/skyline.jpg'
+import sunset from '../images/sunset.jpg'
 
 const ErrorPage = (props) => {
   return (
