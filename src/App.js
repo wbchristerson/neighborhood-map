@@ -7,8 +7,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import escapeRegExp from 'escape-string-regexp'
 
 class App extends Component {
-  // 33.856853, lng: -118.400588
-  // {lat: 33.887159533767874, lng: -118.41460291075771}
   state = {
     placesList: [
       { title: "Roundhouse Aquarium And Cafe", placeType: "cafe", location: {lat: 33.883368, lng: -118.414595}, forStreetView: {lat: 33.883355, lng: -118.414639}},
@@ -36,47 +34,17 @@ class App extends Component {
     currentPlace: '', // place being considered
     filteredPlaces: [],
     animationConstant: 0,
-    // currentLocation: {}, // lat, lng coordinates of location
   }
 
   componentDidMount() {
     this.resetFilteredPlaces()
   }
-  // componentDidMount() {
-  //   fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=target&limit=1`)
-  //   .then((res) => res.text())
-  //   .then((text) => {
-  //     let formattedResponse = JSON.parse(text).response.venues[0];
-  //     return formattedResponse.id
-  //   })
-  //   .then((id) => {
-  //     fetch(`https://api.foursquare.com/v2/venues/${id}/photos?client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815`)
-  //     .then((res) => res.text())
-  //     .then((text) => {
-  //       let formattedNewResponse = JSON.parse(text)
-  //       let imageInfo = formattedNewResponse.response.photos.items[0]
-  //       this.setState({
-  //         imageSrc: imageInfo.prefix + '36x36' + imageInfo.suffix
-  //       })
-  //     })
-  //   })
-  //   .catch((error) => console.log("Error: ", error))
-  // }
 
-  setClicked(status) { ////////////////////////////////////////////////////////////////////////////////////
-    // this.setState({
-    //   itemClicked: !status,
-    // })
+  setClicked(status) {
     this.setState({
       itemClicked: status,
     })
   }
-
-  // markerSetClicked(status, ref) {
-  //   ref.setState({
-  //     itemClicked: status,
-  //   })
-  // }
 
   setMarkerQuery(newQuery) {
     this.setState({
@@ -109,19 +77,9 @@ class App extends Component {
     this.setState({
       filteredPlaces: this.state.placesList.filter((place) => match.test(place.title))
     })
-    // if (this.state.filterQuery) {
-    //   const match = new RegExp(escapeRegExp(this.state.filterQuery), 'i')
-    //   filteredPlaces = this.state.placesList.filter((place) => match.test(place.title))
-    // } else {
-    //   filteredPlaces = this.state.placesList
-    // }
   }
 
   render() {
-    // this.setState({
-    //   filteredPlaces: filteredPlaces
-    // })
-
     return (
       <MuiThemeProvider>
         <div role="Application">
@@ -147,7 +105,7 @@ class App extends Component {
               </div>}
             <MyMap
               googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS3Ijzo5Ona6YUsFuvRlHy1NFDEsmesoI&v=3.exp&libraries=geometry,drawing,places"
-              loadingElement={<div style={{ height: `100%` }} />}
+              loadingElement={<div style={{ height: `100%`, margin: `auto`, fontSize: `28px` }}>The map view is loading.</div>}
               containerElement={<div className="map-order" />}
               mapElement={<div style={{ height: `100%` }} />}
               center={{ lat: 33.888428, lng: -118.393534 }}
@@ -158,7 +116,6 @@ class App extends Component {
               currentPlace={this.state.currentPlace}
               resetFilteredPlaces={this.resetFilteredPlaces.bind(this)}
               animationConstant={this.state.animationConstant}
-              // objectReference={this}
             />
           </main>
         </div>
@@ -166,6 +123,5 @@ class App extends Component {
     );
   }
 }
-// {this.state.imageSrc && <img src={this.state.imageSrc} alt="Test"/>}
 
 export default App;

@@ -3,9 +3,6 @@ import IconButton from 'material-ui/IconButton'
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import { List, ListItem } from 'material-ui/List'
 import ThumbUp from 'material-ui/svg-icons/action/thumb-up'
-// import RaisedButton from 'material-ui/RaisedButton'
-// import FontIcon from 'material-ui/FontIcon'
-// import ActionHome from 'material-ui/svg-icons/action/home'
 
 class InfoTab extends Component {
   state = {
@@ -97,7 +94,6 @@ class InfoTab extends Component {
 
   backToSearch = () => {
     this.props.setClicked(false)
-    // this.props.setCurrentPlace('')
     this.props.resetFilteredPlaces()
   }
 
@@ -167,26 +163,11 @@ class InfoTab extends Component {
                   }
                 })}
               </ListItem>}
-            {(this.state.rating >= 0.0) &&
-              <ListItem>
-                Rating: {this.state.rating}/10
-              </ListItem>}
-            {this.state.tip &&
-              <ListItem>
-                One visitor had this to say: "{this.state.tip}"
-              </ListItem>}
-            {this.state.menuUrl &&
-              <ListItem>
-                Menu (provided courtesy of Foursquare): {this.state.menuUrl}
-              </ListItem>}
-            {this.state.price &&
-              <ListItem>
-                Price Tier: {this.state.price}
-              </ListItem>}
-            {(this.state.likesCount >= 0) &&
-              <ListItem>
-                {this.state.likesCount} <ThumbUp />
-              </ListItem>}
+            {(this.state.rating >= 0.0) && <ListItem>Rating: {this.state.rating}/10</ListItem>}
+            {this.state.tip && <ListItem>One visitor had this to say: "{this.state.tip}"</ListItem>}
+            {this.state.menuUrl && <ListItem>Menu (provided courtesy of Foursquare): {this.state.menuUrl}</ListItem>}
+            {this.state.price && <ListItem>Price Tier: {this.state.price}</ListItem>}
+            {(this.state.likesCount >= 0) && <ListItem>{this.state.likesCount} <ThumbUp /></ListItem>}
           </List>
         </main>
       </div>
