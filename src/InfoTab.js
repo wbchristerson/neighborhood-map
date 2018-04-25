@@ -3,9 +3,7 @@ import IconButton from 'material-ui/IconButton'
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import { List, ListItem } from 'material-ui/List'
 import ThumbUp from 'material-ui/svg-icons/action/thumb-up'
-import hibiscus from './images/hibiscus.jpg'
-import skyline from './images/skyline.jpg'
-import sunset from './images/sunset.jpg'
+import ErrorPage from './ErrorPage'
 
 class InfoTab extends Component {
   state = {
@@ -148,10 +146,7 @@ class InfoTab extends Component {
                 <ListItem tabIndex={0}>
                   URL: {this.state.url}
                 </ListItem>}
-              {this.state.openStatus &&
-                <ListItem>
-                  Current Status: {this.state.openStatus}
-                </ListItem>}
+              {this.state.openStatus && <ListItem>Current Status: {this.state.openStatus}</ListItem>}
               {(this.state.timeFrames.length > 0) &&
                 <ListItem>
                   Schedule:
@@ -182,21 +177,7 @@ class InfoTab extends Component {
             </List>
           </main>
         }
-        {!this.state.infoLoaded &&
-          <div className="error-page">
-            <h3 className="inner-margin">Uh-oh, there was an error in retrieving the necessary data.
-              This may have been a result of a poor internet connection.</h3>
-            <div className="inner-margin">In the meantime, here is a picture of a hibiscus flower in Manhattan Beach:
-              <img className="error-image" src={hibiscus} alt="A pink hibiscus flower"/>
-            </div>
-            <div className="inner-margin">Here is a picture of the skyline facing the Pacific Ocean:
-              <img className="error-image" src={skyline} alt="A view of the Manhattan Beach skyline"/>
-            </div>
-            <div className="inner-margin">Here is a picture of a sunset over Manhattan Beach, also facing the Pacific Ocean:
-              <img className="error-image" src={sunset} alt="A sunset over Manhattan Beach"/>
-            </div>
-          </div>
-        }
+        {!this.state.infoLoaded && <ErrorPage/>}
       </div>
     )
   }
