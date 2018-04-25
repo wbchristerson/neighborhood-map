@@ -126,7 +126,7 @@ class App extends Component {
       <MuiThemeProvider>
         <div role="Application">
           <header className="welcome-sign">Come Visit Manhattan Beach, California!</header>
-          <div className="app-format">
+          <main className="app-format">
             {!this.state.itemClicked &&
               <form className="search-order">
                 <Search
@@ -137,9 +137,9 @@ class App extends Component {
                   setAnimationConstant={this.setAnimationConstant.bind(this)}
                   updateFilteredPlaces={this.updateFilteredPlaces.bind(this)}
                 />
-            </form>}
+              </form>}
             {this.state.itemClicked &&
-              <div className="info-tab-order">
+              <div role="Contentinfo" className="info-tab-order">
                 <InfoTab
                   setClicked={this.setClicked.bind(this)}
                   resetFilteredPlaces={this.resetFilteredPlaces.bind(this)}
@@ -160,7 +160,7 @@ class App extends Component {
               animationConstant={this.state.animationConstant}
               // objectReference={this}
             />
-          </div>
+          </main>
         </div>
       </MuiThemeProvider>
     );
