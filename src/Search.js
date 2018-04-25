@@ -66,7 +66,7 @@ class Search extends Component {
     //   this.props.setMarkerList(showingPlaces)
     // }
     return (
-      <div className="search-format">
+      <div role="Menu" className="search-format">
         <input
           className='search-locations'
           type='text'
@@ -98,6 +98,7 @@ class Search extends Component {
               <ListItem
                 // classes={ 'list-color' }
                 key={place.title}
+                role="Menuitem"
                 // hoverColor='#62f442'
                 primaryText={place.title}
                 rightIcon={optionalIcon}

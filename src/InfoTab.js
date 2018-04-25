@@ -111,13 +111,11 @@ class InfoTab extends Component {
           <div className="title-place">{this.props.currentPlace}</div>
         </div>
         <div className="location-style">
-          {this.state.imageSrc && <img className="image-dimensions" src={this.state.imageSrc} alt="Test"/>}
+          {this.state.imageSrc && <img className="image-dimensions" src={this.state.imageSrc} alt={this.props.currentPlace}/>}
           <List>
             {this.state.description &&
               <ListItem
-                // hoverColor='#62f442'
                 primaryText={<div>Description: {this.state.description}</div>}
-                // rightIcon={<HomeIcon />}
               ></ListItem>}
             {(this.state.address || this.state.location) &&
               <ListItem>
@@ -140,7 +138,7 @@ class InfoTab extends Component {
                 {this.state.facebookContact && <div>Facebook: {this.state.facebookContact}</div>}
               </ListItem>}
             {this.state.url &&
-              <ListItem>
+              <ListItem tabIndex="0">
                 URL: {this.state.url}
               </ListItem>}
             {this.state.openStatus &&

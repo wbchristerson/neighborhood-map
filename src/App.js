@@ -124,11 +124,11 @@ class App extends Component {
 
     return (
       <MuiThemeProvider>
-        <div>
-          <div className="welcome-sign">Come Visit Manhattan Beach, California!</div>
+        <div role="Application">
+          <header className="welcome-sign">Come Visit Manhattan Beach, California!</header>
           <div className="app-format">
             {!this.state.itemClicked &&
-              <div className="search-order">
+              <form className="search-order">
                 <Search
                   placesList={this.state.placesList}
                   setCurrentPlace={this.setCurrentPlace.bind(this)}
@@ -137,7 +137,7 @@ class App extends Component {
                   setAnimationConstant={this.setAnimationConstant.bind(this)}
                   updateFilteredPlaces={this.updateFilteredPlaces.bind(this)}
                 />
-            </div>}
+            </form>}
             {this.state.itemClicked &&
               <div className="info-tab-order">
                 <InfoTab
