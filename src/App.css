@@ -89,9 +89,10 @@
 .welcome-sign {
   height: 5vh;
   text-align: center;
-  background-image: url('downtown.jpg');
+  background: black;
+  /* background-image: url('alley - Copy.jpg'); */
   /* background: linear-gradient(to right, #65f442, #47ced8); */
-  color: black;
+  color: white;
   font: bold 1.2em "Fira Sans", serif;
-  font-weight: 400;
+  font-weight: 600;
 }
