@@ -109,7 +109,23 @@
 .list-style {
   max-height: 91%;
   overflow: auto;
-  /* style={{ maxHeight: '91%', overflow: 'auto' }} */
+}
+
+.error-image {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.error-page {
+  max-height: 93%;
+  overflow: auto;
+}
+
+.inner-margin {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 @media screen and (max-width: 600px) {

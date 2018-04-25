@@ -3,6 +3,9 @@ import IconButton from 'material-ui/IconButton'
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import { List, ListItem } from 'material-ui/List'
 import ThumbUp from 'material-ui/svg-icons/action/thumb-up'
+import hibiscus from './images/hibiscus.jpg'
+import skyline from './images/skyline.jpg'
+import sunset from './images/sunset.jpg'
 
 class InfoTab extends Component {
   state = {
@@ -26,6 +29,7 @@ class InfoTab extends Component {
     description: '',
     likesCount: -1,
     location: '',
+    infoLoaded: true,
   }
 
   componentDidMount() {
@@ -85,11 +89,17 @@ class InfoTab extends Component {
           price: (allData.hasOwnProperty('price') && allData.price.hasOwnProperty('message')) ? allData.price.message : '',
           description: allData.hasOwnProperty('description') ? allData.description : '',
           likesCount: (allData.hasOwnProperty('likes') && allData.likes.hasOwnProperty('count')) ? allData.likes.count : -1,
-          location: ((allData.hasOwnProperty('location') && allData.location.hasOwnProperty('address')) ? allData.location.address : '')
+          location: ((allData.hasOwnProperty('location') && allData.location.hasOwnProperty('address')) ? allData.location.address : ''),
+          infoLoaded: true,
         })
       })
     })
-    .catch((error) => console.log("Error: ", error))
+    .catch((error) => {
+      this.setState({
+        infoLoaded: false,
+      })
+      console.log("Error: ", error)
+    })
   }
 
   backToSearch = () => {
@@ -106,70 +116,87 @@ class InfoTab extends Component {
           </IconButton>
           <div role="Banner" className="title-place">{this.props.currentPlace}</div>
         </header>
-        <main className="location-style">
-          {this.state.imageSrc && <img className="image-dimensions" src={this.state.imageSrc} alt={this.props.currentPlace}/>}
-          <List>
-            {this.state.description &&
-              <ListItem
-                primaryText={<div>Description: {this.state.description}</div>}
-              ></ListItem>}
-            {(this.state.address || this.state.location) &&
-              <ListItem>
-                {!this.state.location && <div>Address: {this.state.address}</div>}
-                {this.state.formattedAddress && <div>Location: {this.state.formattedAddress}</div>}
-                {this.state.location && !this.state.address && !this.state.formattedAddress && <div>Location: {this.state.location}</div>}
-              </ListItem>}
-            {(this.state.coordinates.length === 2) &&
-              <ListItem>Coordinates: ({this.state.coordinates[0]}, {this.state.coordinates[1]})</ListItem>}
-            {(this.state.categories.length > 0) &&
-              <ListItem>
-                Categories:
-                {this.state.categories.map((category) => (<div key={category.id}>{category.name}</div>))}
-              </ListItem>}
-            {(this.state.phoneContact || this.state.twitterContact || this.state.facebookContact) &&
-              <ListItem>
-                Contact:
-                {this.state.phoneContact && <div>Phone: {this.state.phoneContact}</div>}
-                {this.state.twitterContact && <div>Twitter: {this.state.twitterContact}</div>}
-                {this.state.facebookContact && <div>Facebook: {this.state.facebookContact}</div>}
-              </ListItem>}
-            {this.state.url &&
-              <ListItem tabIndex={0}>
-                URL: {this.state.url}
-              </ListItem>}
-            {this.state.openStatus &&
-              <ListItem>
-                Current Status: {this.state.openStatus}
-              </ListItem>}
-            {(this.state.timeFrames.length > 0) &&
-              <ListItem>
-                Schedule:
-                {this.state.timeFrames.map((time) => {
-                  if (time.hasOwnProperty('includesToday') && time.includesToday) {
-                    return ( <div key={time.days}><b>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</b></div> )
-                  } else {
-                    return ( <div key={time.days}>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</div> )
-                  }
-                })}
-              </ListItem>}
-            {(this.state.popularTimes.length > 0) &&
-              <ListItem>
-                Popular Times:
-                {this.state.popularTimes.map((time) => {
-                  if (time.hasOwnProperty('days') && (time.days === 'Today')) {
-                    return ( <div key={time.days}><b>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</b></div> )
-                  } else {
-                    return ( <div key={time.days}>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</div> )
-                  }
-                })}
-              </ListItem>}
-            {(this.state.rating >= 0.0) && <ListItem>Rating: {this.state.rating}/10</ListItem>}
-            {this.state.tip && <ListItem>One visitor had this to say: "{this.state.tip}"</ListItem>}
-            {this.state.menuUrl && <ListItem>Menu (provided courtesy of Foursquare): {this.state.menuUrl}</ListItem>}
-            {this.state.price && <ListItem>Price Tier: {this.state.price}</ListItem>}
-            {(this.state.likesCount >= 0) && <ListItem>{this.state.likesCount} <ThumbUp /></ListItem>}
-          </List>
-        </main>
+        {this.state.infoLoaded &&
+          <main className="location-style">
+            {this.state.imageSrc && <img className="image-dimensions" src={this.state.imageSrc} alt={this.props.currentPlace}/>}
+            <List>
+              {this.state.description &&
+                <ListItem
+                  primaryText={<div>Description: {this.state.description}</div>}
+                ></ListItem>}
+              {(this.state.address || this.state.location) &&
+                <ListItem>
+                  {!this.state.location && <div>Address: {this.state.address}</div>}
+                  {this.state.formattedAddress && <div>Location: {this.state.formattedAddress}</div>}
+                  {this.state.location && !this.state.address && !this.state.formattedAddress && <div>Location: {this.state.location}</div>}
+                </ListItem>}
+              {(this.state.coordinates.length === 2) &&
+                <ListItem>Coordinates: ({this.state.coordinates[0]}, {this.state.coordinates[1]})</ListItem>}
+              {(this.state.categories.length > 0) &&
+                <ListItem>
+                  Categories:
+                  {this.state.categories.map((category) => (<div key={category.id}>{category.name}</div>))}
+                </ListItem>}
+              {(this.state.phoneContact || this.state.twitterContact || this.state.facebookContact) &&
+                <ListItem>
+                  Contact:
+                  {this.state.phoneContact && <div>Phone: {this.state.phoneContact}</div>}
+                  {this.state.twitterContact && <div>Twitter: {this.state.twitterContact}</div>}
+                  {this.state.facebookContact && <div>Facebook: {this.state.facebookContact}</div>}
+                </ListItem>}
+              {this.state.url &&
+                <ListItem tabIndex={0}>
+                  URL: {this.state.url}
+                </ListItem>}
+              {this.state.openStatus &&
+                <ListItem>
+                  Current Status: {this.state.openStatus}
+                </ListItem>}
+              {(this.state.timeFrames.length > 0) &&
+                <ListItem>
+                  Schedule:
+                  {this.state.timeFrames.map((time) => {
+                    if (time.hasOwnProperty('includesToday') && time.includesToday) {
+                      return ( <div key={time.days}><b>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</b></div> )
+                    } else {
+                      return ( <div key={time.days}>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</div> )
+                    }
+                  })}
+                </ListItem>}
+              {(this.state.popularTimes.length > 0) &&
+                <ListItem>
+                  Popular Times:
+                  {this.state.popularTimes.map((time) => {
+                    if (time.hasOwnProperty('days') && (time.days === 'Today')) {
+                      return ( <div key={time.days}><b>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</b></div> )
+                    } else {
+                      return ( <div key={time.days}>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</div> )
+                    }
+                  })}
+                </ListItem>}
+              {(this.state.rating >= 0.0) && <ListItem>Rating: {this.state.rating}/10</ListItem>}
+              {this.state.tip && <ListItem>One visitor had this to say: "{this.state.tip}"</ListItem>}
+              {this.state.menuUrl && <ListItem>Menu (provided courtesy of Foursquare): {this.state.menuUrl}</ListItem>}
+              {this.state.price && <ListItem>Price Tier: {this.state.price}</ListItem>}
+              {(this.state.likesCount >= 0) && <ListItem>{this.state.likesCount} <ThumbUp /></ListItem>}
+            </List>
+          </main>
+        }
+        {!this.state.infoLoaded &&
+          <div className="error-page">
+            <h3 className="inner-margin">Uh-oh, there was an error in retrieving the necessary data.
+              This may have been a result of a poor internet connection.</h3>
+            <div className="inner-margin">In the meantime, here is a picture of a hibiscus flower in Manhattan Beach:
+              <img className="error-image" src={hibiscus} alt="A pink hibiscus flower"/>
+            </div>
+            <div className="inner-margin">Here is a picture of the skyline facing the Pacific Ocean:
+              <img className="error-image" src={skyline} alt="A view of the Manhattan Beach skyline"/>
+            </div>
+            <div className="inner-margin">Here is a picture of a sunset over Manhattan Beach, also facing the Pacific Ocean:
+              <img className="error-image" src={sunset} alt="A sunset over Manhattan Beach"/>
+            </div>
+          </div>
+        }
       </div>
     )
   }
