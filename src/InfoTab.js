@@ -105,8 +105,8 @@ class InfoTab extends Component {
     return (
       <div className="search-format">
         <div className="title-block">
-          <IconButton onClick={this.backToSearch} tooltip="Font Icon">
-            <ArrowBack/>
+          <IconButton style={{marginTop: 'auto', marginBottom: 'auto'}} onClick={this.backToSearch} tooltip="Font Icon">
+            <ArrowBack />
           </IconButton>
           <div className="title-place">{this.props.currentPlace}</div>
         </div>

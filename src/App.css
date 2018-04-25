@@ -112,7 +112,7 @@
   /* style={{ maxHeight: '91%', overflow: 'auto' }} */
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .app-format {
     display: flex;
     flex-direction: column;
@@ -134,6 +134,10 @@
   }
 
   .list-style {
+    overflow: visible;
+  }
+
+  .location-style {
     overflow: visible;
   }
 }
