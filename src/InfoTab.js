@@ -187,7 +187,7 @@ class InfoTab extends Component {
               </ListItem>}
             {(this.state.likesCount >= 0) &&
               <ListItem>
-                <ThumbUp/> {this.state.likesCount}
+                {this.state.likesCount} <ThumbUp />
               </ListItem>}
           </List>
         </div>

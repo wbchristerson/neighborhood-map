@@ -123,44 +123,46 @@ class App extends Component {
     // })
 
     return (
-      <div>
-        <div className="welcome-sign">Come Visit Manhattan Beach, California!</div>
-        <div className="app-format">
-          {!this.state.itemClicked &&
-            <MuiThemeProvider>
-              <Search
-                placesList={this.state.placesList}
-                setCurrentPlace={this.setCurrentPlace.bind(this)}
-                setClicked={this.setClicked.bind(this)}
-                setMarkerQuery={this.setMarkerQuery.bind(this)}
-                setAnimationConstant={this.setAnimationConstant.bind(this)}
-                updateFilteredPlaces={this.updateFilteredPlaces.bind(this)}
-              />
-            </MuiThemeProvider>}
-          {this.state.itemClicked &&
-            <MuiThemeProvider>
-              <InfoTab
-                setClicked={this.setClicked.bind(this)}
-                resetFilteredPlaces={this.resetFilteredPlaces.bind(this)}
-                currentPlace={this.state.currentPlace}/>
-            </MuiThemeProvider>}
-          <MyMap
-            googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS3Ijzo5Ona6YUsFuvRlHy1NFDEsmesoI&v=3.exp&libraries=geometry,drawing,places"
-            loadingElement={<div style={{ height: `100%` }} />}
-            containerElement={<div style={{ width: `100%`, height: `95vh` }} />}
-            mapElement={<div style={{ height: `100%` }} />}
-            center={{ lat: 33.888428, lng: -118.393534 }}
-            zoom={14}
-            filteredPlaces={this.state.filteredPlaces}
-            setClicked={this.setClicked.bind(this)}
-            setCurrentPlace={this.setCurrentPlace.bind(this)}
-            currentPlace={this.state.currentPlace}
-            resetFilteredPlaces={this.resetFilteredPlaces.bind(this)}
-            animationConstant={this.state.animationConstant}
-            // objectReference={this}
-          />
+      <MuiThemeProvider>
+        <div>
+          <div className="welcome-sign">Come Visit Manhattan Beach, California!</div>
+          <div className="app-format">
+            {!this.state.itemClicked &&
+              <div className="search-order">
+                <Search
+                  placesList={this.state.placesList}
+                  setCurrentPlace={this.setCurrentPlace.bind(this)}
+                  setClicked={this.setClicked.bind(this)}
+                  setMarkerQuery={this.setMarkerQuery.bind(this)}
+                  setAnimationConstant={this.setAnimationConstant.bind(this)}
+                  updateFilteredPlaces={this.updateFilteredPlaces.bind(this)}
+                />
+            </div>}
+            {this.state.itemClicked &&
+              <div className="info-tab-order">
+                <InfoTab
+                  setClicked={this.setClicked.bind(this)}
+                  resetFilteredPlaces={this.resetFilteredPlaces.bind(this)}
+                  currentPlace={this.state.currentPlace}/>
+              </div>}
+            <MyMap
+              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS3Ijzo5Ona6YUsFuvRlHy1NFDEsmesoI&v=3.exp&libraries=geometry,drawing,places"
+              loadingElement={<div style={{ height: `100%` }} />}
+              containerElement={<div className="map-order" />}
+              mapElement={<div style={{ height: `100%` }} />}
+              center={{ lat: 33.888428, lng: -118.393534 }}
+              zoom={14}
+              filteredPlaces={this.state.filteredPlaces}
+              setClicked={this.setClicked.bind(this)}
+              setCurrentPlace={this.setCurrentPlace.bind(this)}
+              currentPlace={this.state.currentPlace}
+              resetFilteredPlaces={this.resetFilteredPlaces.bind(this)}
+              animationConstant={this.state.animationConstant}
+              // objectReference={this}
+            />
+          </div>
         </div>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }

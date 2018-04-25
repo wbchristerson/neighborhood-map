@@ -74,7 +74,7 @@ class Search extends Component {
           value={query}
           onChange={(event) => this.updateQuery(event.target.value)}
         />
-        <List style={{ maxHeight: '91%', overflow: 'auto' }}>
+        <List className="list-style">
           {showingPlaces.map((place) => {
             let optionalIcon
             if (place.placeType === 'restaurant') {
