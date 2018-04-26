@@ -117,6 +117,7 @@ class InfoTab extends Component {
         {this.state.infoLoaded &&
           <main className="location-style">
             {this.state.imageSrc && <img className="image-dimensions" src={this.state.imageSrc} alt={this.props.currentPlace}/>}
+            <div className="inner-margin" role="Contentinfo">Information provided by <a href="https://foursquare.com/" target="_blank">Foursquare</a>:</div>
             <List>
               {this.state.description &&
                 <ListItem
@@ -144,7 +145,7 @@ class InfoTab extends Component {
                 </ListItem>}
               {this.state.url &&
                 <ListItem tabIndex={0}>
-                  URL: {this.state.url}
+                  Website: <a href={this.state.url} target="_blank">{this.props.currentPlace}</a>
                 </ListItem>}
               {this.state.openStatus && <ListItem>Current Status: {this.state.openStatus}</ListItem>}
               {(this.state.timeFrames.length > 0) &&
@@ -170,8 +171,8 @@ class InfoTab extends Component {
                   })}
                 </ListItem>}
               {(this.state.rating >= 0.0) && <ListItem>Rating: {this.state.rating}/10</ListItem>}
-              {this.state.tip && <ListItem>One visitor had this to say: "{this.state.tip}"</ListItem>}
-              {this.state.menuUrl && <ListItem>Menu (provided courtesy of Foursquare): {this.state.menuUrl}</ListItem>}
+              {this.state.tip && (this.props.currentPlace !== 'Target') && <ListItem>One visitor had this to say: "{this.state.tip}"</ListItem>}
+              {this.state.menuUrl && <ListItem>Menu (provided courtesy of Foursquare): <a href={this.state.menuUrl} target="_blank">Menu</a></ListItem>}
               {this.state.price && <ListItem>Price Tier: {this.state.price}</ListItem>}
               {(this.state.likesCount >= 0) && <ListItem>{this.state.likesCount} <ThumbUp /></ListItem>}
             </List>
