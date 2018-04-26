@@ -105,6 +105,9 @@ class InfoTab extends Component {
   }
 
   render() {
+    // a reducer for formatting the contents of the queried scheduling array
+    let reducer = (accumulator, currentValue) => (accumulator + ', ' + currentValue.renderedTime)
+
     return (
       <div role="Application" className="search-format">
         <header className="title-block">
@@ -151,10 +154,11 @@ class InfoTab extends Component {
                 <ListItem>
                   Schedule:
                   {this.state.timeFrames.map((time) => {
+                    let dayString = time.open.reduce(reducer, '').substring(2)
                     if (time.hasOwnProperty('includesToday') && time.includesToday) {
-                      return ( <div key={time.days}><b>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</b></div> )
+                      return ( <div key={time.days}><b>{time.days}: {dayString}</b></div> )
                     } else {
-                      return ( <div key={time.days}>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</div> )
+                      return ( <div key={time.days}>{time.days}: {dayString}</div> )
                     }
                   })}
                 </ListItem>}
@@ -162,10 +166,11 @@ class InfoTab extends Component {
                 <ListItem>
                   Popular Times:
                   {this.state.popularTimes.map((time) => {
+                    let popularString = time.open.reduce(reducer, '').substring(2)
                     if (time.hasOwnProperty('days') && (time.days === 'Today')) {
-                      return ( <div key={time.days}><b>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</b></div> )
+                      return ( <div key={time.days}><b>{time.days}: {popularString}</b></div> )
                     } else {
-                      return ( <div key={time.days}>{time.days}: {time.open.map((interval) => <div key={interval.renderedTime}>{interval.renderedTime}</div>)}</div> )
+                      return ( <div key={time.days}>{time.days}: {popularString}</div> )
                     }
                   })}
                 </ListItem>}
