@@ -26,4 +26,4 @@ Alternatively, follow the instructions below to download to a hard drive:
 
 (I believe that `yarn start` will also be sufficient.)
 
-The page will open in the browser.
+The page will open in the browser. You can get your own API keys for Google Maps and Foursquare on their developer websites.
