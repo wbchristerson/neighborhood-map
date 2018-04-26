@@ -58,8 +58,8 @@ class App extends Component {
     })
   }
 
-  // a value in {0,1,2} for the type of animation displayed for the currently
-  // selected place as given by currentPlace
+  // Set a value in {0,1,2} for the type of animation displayed for the
+  // currently selected place, as given by currentPlace
   setAnimationConstant(animationType) {
     this.setState({
       animationConstant: animationType,
