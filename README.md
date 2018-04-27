@@ -1,7 +1,7 @@
 # Neighborhood Map
 
 <p align="center">
-  <img src="images/main-page.png" alt="Main Screen">
+  <img src="src/images/main-page.png" alt="Main Screen">
 </p>
 
 This project includes a neighborhood map of [Manhattan Beach, California](http://www.citymb.info/) along with information about several venues there including local restaurants, ocean-related sites, and stores. The project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app) and in turn developed using `React`. The map feature used in the application was obtained via `react-google-maps`, an application that integrates `React` with Google Maps. In turn, that software was itself based on [Google Maps API](https://developers.google.com/maps/). Documentation about `react-google-maps` can be found [here](https://github.com/tomchentw/react-google-maps). In addition, the street views for markers that were used were obtained with the [street view feature](https://developers.google.com/maps/documentation/javascript/streetview) of Google Maps, also through `react-google-maps`. Data about the included venues were extracted using the [Foursquare API](https://developer.foursquare.com/).
