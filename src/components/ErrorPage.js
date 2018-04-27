@@ -14,7 +14,7 @@ const ErrorPage = (props) => {
       <div role="Contentinfo" className="inner-margin">Here is a picture of the skyline facing the Pacific Ocean:
         <img className="error-image" src={skyline} alt="A view of the Manhattan Beach skyline"/>
       </div>
-      <div role="Contentinfo" className="inner-margin">Here is a picture of a sunset over Manhattan Beach, also facing the Pacific Ocean:
+      <div role="Contentinfo" className="inner-margin">Here is a picture of a sunset over some trees in Manhattan Beach, also facing the Pacific Ocean:
         <img className="error-image" src={sunset} alt="A sunset over Manhattan Beach"/>
       </div>
     </main>
