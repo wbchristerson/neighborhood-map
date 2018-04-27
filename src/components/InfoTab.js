@@ -104,10 +104,114 @@ class InfoTab extends Component {
     this.props.resetFilteredPlaces()
   }
 
-  render() {
+  // return an element with the venue's description, based on state
+  getDescription = () => (
+    <ListItem primaryText={<div>Description: {this.state.description}</div>}></ListItem>
+  )
+
+  // return an element with the venue's address, based on state
+  getAddress = () => (
+    <ListItem>
+      {!this.state.location && <div>Address: {this.state.address}</div>}
+      {this.state.formattedAddress && <div>Location: {this.state.formattedAddress}</div>}
+      {this.state.location && !this.state.address && !this.state.formattedAddress && <div>Location: {this.state.location}</div>}
+    </ListItem>
+  )
+
+  // return an element with the venue's coordinates, based on state
+  getCoordinates = () => (
+    <ListItem>Coordinates: ({this.state.coordinates[0]}, {this.state.coordinates[1]})</ListItem>
+  )
+
+  // return an element with the venue's categories, based on state
+  getCategories = () => (
+    <ListItem>
+      Categories:
+      {this.state.categories.map((category) => (<div key={category.id}>{category.name}</div>))}
+    </ListItem>
+  )
+
+  // return an element with the venue's contact information, based on state
+  getContact = () => (
+    <ListItem>
+      Contact:
+      {this.state.phoneContact && <div>Phone: {this.state.phoneContact}</div>}
+      {this.state.twitterContact && <div>Twitter: {this.state.twitterContact}</div>}
+      {this.state.facebookContact && <div>Facebook: {this.state.facebookContact}</div>}
+    </ListItem>
+  )
+
+  // return an anchor tag element with the venue's website, based on state
+  getUrl = () => (
+    <ListItem tabIndex={0}>
+      Website: <a href={this.state.url} target="_blank" rel="noopener noreferrer">{this.props.currentPlace}</a>
+    </ListItem>
+  )
+
+  // return an element with the venue's status (open/closed), based on state
+  getStatus = () => (
+    <ListItem>Current Status: {this.state.openStatus}</ListItem>
+  )
+
+  // return an element with the venue's schedule, based on state
+  getSchedule = () => {
     // a reducer for formatting the contents of the queried scheduling array
     let reducer = (accumulator, currentValue) => (accumulator + ', ' + currentValue.renderedTime)
+    return (
+      <ListItem>
+        Schedule:
+        {this.state.timeFrames.map((time) => {
+          let dayString = time.open.reduce(reducer, '').substring(2)
+          if (time.hasOwnProperty('includesToday') && time.includesToday) {
+            return ( <div key={time.days}><b>{time.days}: {dayString}</b></div> )
+          } else {
+            return ( <div key={time.days}>{time.days}: {dayString}</div> )
+          }
+        })}
+      </ListItem>
+    )
+  }
 
+  // return an element with the venue's popular times, based on state
+  getPopularTimes = () => {
+    // a reducer for formatting the contents of the queried scheduling array
+    let reducer = (accumulator, currentValue) => (accumulator + ', ' + currentValue.renderedTime)
+    return (
+      <ListItem>
+        Popular Times:
+        {this.state.popularTimes.map((time) => {
+          let popularString = time.open.reduce(reducer, '').substring(2)
+          if (time.hasOwnProperty('days') && (time.days === 'Today')) {
+            return ( <div key={time.days}><b>{time.days}: {popularString}</b></div> )
+          } else {
+            return ( <div key={time.days}>{time.days}: {popularString}</div> )
+          }
+        })}
+      </ListItem>
+    )
+  }
+
+  // return a list material-ui element with the venue information
+  getList = () => (
+    <List>
+      {this.state.description && this.getDescription()}
+      {(this.state.address || this.state.location) && this.getAddress()}
+      {(this.state.coordinates.length === 2) && this.getCoordinates()}
+      {(this.state.categories.length > 0) && this.getCategories()}
+      {(this.state.phoneContact || this.state.twitterContact || this.state.facebookContact) && this.getContact()}
+      {this.state.url && this.getUrl()}
+      {this.state.openStatus && this.getStatus()}
+      {(this.state.timeFrames.length > 0) && this.getSchedule()}
+      {(this.state.popularTimes.length > 0) && this.getPopularTimes()}
+      {(this.state.rating >= 0.0) && <ListItem>Rating: {this.state.rating}/10</ListItem>}
+      {this.state.tip && (this.props.currentPlace !== 'Target') && <ListItem>One visitor had this to say: "{this.state.tip}"</ListItem>}
+      {this.state.menuUrl && <ListItem>Menu (provided courtesy of Foursquare): <a href={this.state.menuUrl} target="_blank" rel="noopener noreferrer">Menu</a></ListItem>}
+      {this.state.price && <ListItem>Price Tier: {this.state.price}</ListItem>}
+      {(this.state.likesCount >= 0) && <ListItem>{this.state.likesCount} <ThumbUp /></ListItem>}
+    </List>
+  )
+
+  render() {
     return (
       <div role="Application" className="search-format">
         <header className="title-block">
@@ -120,66 +224,7 @@ class InfoTab extends Component {
           <main className="location-style">
             {this.state.imageSrc && <img className="image-dimensions" src={this.state.imageSrc} alt={this.props.currentPlace}/>}
             <div className="inner-margin" role="Contentinfo">Information provided by <a href="https://foursquare.com/" target="_blank" rel="noopener noreferrer">Foursquare</a>:</div>
-            <List>
-              {this.state.description &&
-                <ListItem
-                  primaryText={<div>Description: {this.state.description}</div>}
-                ></ListItem>}
-              {(this.state.address || this.state.location) &&
-                <ListItem>
-                  {!this.state.location && <div>Address: {this.state.address}</div>}
-                  {this.state.formattedAddress && <div>Location: {this.state.formattedAddress}</div>}
-                  {this.state.location && !this.state.address && !this.state.formattedAddress && <div>Location: {this.state.location}</div>}
-                </ListItem>}
-              {(this.state.coordinates.length === 2) &&
-                <ListItem>Coordinates: ({this.state.coordinates[0]}, {this.state.coordinates[1]})</ListItem>}
-              {(this.state.categories.length > 0) &&
-                <ListItem>
-                  Categories:
-                  {this.state.categories.map((category) => (<div key={category.id}>{category.name}</div>))}
-                </ListItem>}
-              {(this.state.phoneContact || this.state.twitterContact || this.state.facebookContact) &&
-                <ListItem>
-                  Contact:
-                  {this.state.phoneContact && <div>Phone: {this.state.phoneContact}</div>}
-                  {this.state.twitterContact && <div>Twitter: {this.state.twitterContact}</div>}
-                  {this.state.facebookContact && <div>Facebook: {this.state.facebookContact}</div>}
-                </ListItem>}
-              {this.state.url &&
-                <ListItem tabIndex={0}>
-                  Website: <a href={this.state.url} target="_blank" rel="noopener noreferrer">{this.props.currentPlace}</a>
-                </ListItem>}
-              {this.state.openStatus && <ListItem>Current Status: {this.state.openStatus}</ListItem>}
-              {(this.state.timeFrames.length > 0) &&
-                <ListItem>
-                  Schedule:
-                  {this.state.timeFrames.map((time) => {
-                    let dayString = time.open.reduce(reducer, '').substring(2)
-                    if (time.hasOwnProperty('includesToday') && time.includesToday) {
-                      return ( <div key={time.days}><b>{time.days}: {dayString}</b></div> )
-                    } else {
-                      return ( <div key={time.days}>{time.days}: {dayString}</div> )
-                    }
-                  })}
-                </ListItem>}
-              {(this.state.popularTimes.length > 0) &&
-                <ListItem>
-                  Popular Times:
-                  {this.state.popularTimes.map((time) => {
-                    let popularString = time.open.reduce(reducer, '').substring(2)
-                    if (time.hasOwnProperty('days') && (time.days === 'Today')) {
-                      return ( <div key={time.days}><b>{time.days}: {popularString}</b></div> )
-                    } else {
-                      return ( <div key={time.days}>{time.days}: {popularString}</div> )
-                    }
-                  })}
-                </ListItem>}
-              {(this.state.rating >= 0.0) && <ListItem>Rating: {this.state.rating}/10</ListItem>}
-              {this.state.tip && (this.props.currentPlace !== 'Target') && <ListItem>One visitor had this to say: "{this.state.tip}"</ListItem>}
-              {this.state.menuUrl && <ListItem>Menu (provided courtesy of Foursquare): <a href={this.state.menuUrl} target="_blank" rel="noopener noreferrer">Menu</a></ListItem>}
-              {this.state.price && <ListItem>Price Tier: {this.state.price}</ListItem>}
-              {(this.state.likesCount >= 0) && <ListItem>{this.state.likesCount} <ThumbUp /></ListItem>}
-            </List>
+            {this.getList()}
           </main>
         }
         {!this.state.infoLoaded && <ErrorPage/>}
