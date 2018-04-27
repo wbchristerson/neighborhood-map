@@ -47,6 +47,7 @@ class Search extends Component {
           type='text'
           placeholder='Search'
           value={query}
+          id="searchEntry"
           onChange={(event) => this.updateQuery(event.target.value)}
         />
         <List className="list-style">
@@ -72,6 +73,7 @@ class Search extends Component {
             return (
               <ListItem
                 key={place.title}
+                tabIndex={0}
                 role="Menuitem"
                 primaryText={place.title}
                 rightIcon={optionalIcon}
