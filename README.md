@@ -50,4 +50,4 @@ Alternatively, follow the instructions below to download to a hard drive:
 (I believe that `yarn start` will also be sufficient.)
 * Warning: The service worker that is bundled with `create-react-app` only works in production mode.
 
-The page will open in the browser. You can get your own API keys for Google Maps and Foursquare on their developer websites.
+The page will open in the browser.
