@@ -35,6 +35,7 @@ Alternatively, follow the instructions below to download to a hard drive:
     - `npm install`
 * Assuming that your location in the terminal is now within the `neighborhood-map` directory, run the following command to execute the application:
     - `npm start`
+    
 (I believe that `yarn start` will also be sufficient.)
 * Warning: The service worker that is bundled with `create-react-app` only works in production mode.
 
