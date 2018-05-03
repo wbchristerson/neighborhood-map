@@ -5,6 +5,7 @@ import InfoTab from './InfoTab'
 import '../App.css'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import escapeRegExp from 'escape-string-regexp'
+import { API_KEY } from '../api/APIkey'
 
 class App extends Component {
   state = {
@@ -80,6 +81,7 @@ class App extends Component {
   }
 
   render() {
+    const api = 'https://maps.googleapis.com/maps/api/js?key=' + API_KEY + '&v=3.exp&libraries=geometry,drawing,places'
     return (
       <MuiThemeProvider>
         <div role="Application">
@@ -104,7 +106,7 @@ class App extends Component {
                   currentPlace={this.state.currentPlace}/>
               </div>}
             <MyMap
-              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyCS3Ijzo5Ona6YUsFuvRlHy1NFDEsmesoI&v=3.exp&libraries=geometry,drawing,places"
+              googleMapURL={api}
               loadingElement={<div style={{ height: `100%`, margin: `auto`, fontSize: `28px` }}>The map view is loading.</div>}
               containerElement={<div className="map-order" />}
               mapElement={<div style={{ height: `100%` }} />}
