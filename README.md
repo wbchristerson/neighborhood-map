@@ -34,16 +34,16 @@ Alternatively, follow the instructions below to download to a hard drive:
     - `cd neighborhood-map`
     - `npm install`
 * You will need a `Google Maps Platform` API key along with a `Foursquare Client ID` and a `Foursquare Client Secret` to use in the application. To do so:
-    -If you do not have a Google Maps API key already, then you can obtain a `Google Maps Platform` API key for free [here](https://cloud.google.com/maps-platform/). You will have to create a billing account but there is a built in $200 credit.
-    -If you do not have the `Foursquare Client ID` or `Foursquare Client Secret`, then you can obtain them [here](https://developer.foursquare.com/) by first creating a free account.
-    -After you have all three data items, create a new folder in the `src` directory called `api`.
-    -Within `api`, create a Javascript file called `APIkey.js`. Within this file add the following lines, where `YOUR_GOOGLE_KEY`, `YOUR_FOURSQUARE_CLIENT_ID`, and `YOUR_FOURSQUARE_CLIENT_SECRET` are replaced by your personalized data values (don't forget the delimiting quotes):
+    - If you do not have a Google Maps API key already, then you can obtain a `Google Maps Platform` API key for free [here](https://cloud.google.com/maps-platform/). You will have to create a billing account but there is a built in $200 credit.
+    - If you do not have the `Foursquare Client ID` or `Foursquare Client Secret`, then you can obtain them [here](https://developer.foursquare.com/) by first creating a free account.
+    - After you have all three data items, create a new folder in the `src` directory called `api`.
+    - Within `api`, create a Javascript file called `APIkey.js`. Within this file add the following lines, where `YOUR_GOOGLE_KEY`, `YOUR_FOURSQUARE_CLIENT_ID`, and `YOUR_FOURSQUARE_CLIENT_SECRET` are replaced by your personalized data values (don't forget the delimiting quotes):
     ```
     export const GOOGLE_MAP_API_KEY = 'YOUR_GOOGLE_KEY'
     export const FOURSQUARE_CLIENT_ID = 'YOUR_FOURSQUARE_CLIENT_ID'
     export const FOURSQUARE_CLIENT_SECRET = 'YOUR_FOURSQUARE_CLIENT_SECRET'
     ```
-    -Save the file.
+    - Save the file.
 * Assuming that your location in the terminal is now within the `neighborhood-map` directory, run the following command to execute the application:
     - `npm start`
 
