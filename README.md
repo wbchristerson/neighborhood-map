@@ -35,7 +35,7 @@ Alternatively, follow the instructions below to download to a hard drive:
     - `npm install`
 * Assuming that your location in the terminal is now within the `neighborhood-map` directory, run the following command to execute the application:
     - `npm start`
-* Warning: The service worker that is bundled with `create-react-app` only works in production mode.
 (I believe that `yarn start` will also be sufficient.)
+* Warning: The service worker that is bundled with `create-react-app` only works in production mode.
 
 The page will open in the browser. You can get your own API keys for Google Maps and Foursquare on their developer websites.
