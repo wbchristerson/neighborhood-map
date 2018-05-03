@@ -33,7 +33,7 @@ Alternatively, follow the instructions below to download to a hard drive:
 * To install all dependencies for the project from the command line, run the following commands in the terminal:
     - `cd neighborhood-map`
     - `npm install`
-* You will need a `Google Maps Platform` API key along with a `Foursquare Client ID` and a `Foursquare Client Secret` to use in the application. To do so:
+* You will need a `Google Maps Platform` API key along with a `Foursquare Client ID` and a `Foursquare Client Secret` to use in the application:
     - If you do not have a Google Maps API key already, then you can obtain a `Google Maps Platform` API key for free [here](https://cloud.google.com/maps-platform/). You will have to create a billing account but there is a built in $200 credit.
     - If you do not have the `Foursquare Client ID` or `Foursquare Client Secret`, then you can obtain them [here](https://developer.foursquare.com/) by first creating a free account.
     - After you have all three data items, create a new folder in the `src` directory called `api`.
