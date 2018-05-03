@@ -4,6 +4,7 @@ import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back'
 import { List, ListItem } from 'material-ui/List'
 import ThumbUp from 'material-ui/svg-icons/action/thumb-up'
 import ErrorPage from './ErrorPage'
+import { FOURSQUARE_CLIENT_ID, FOURSQUARE_CLIENT_SECRET } from '../api/APIkey'
 
 class InfoTab extends Component {
   state = {
@@ -31,7 +32,7 @@ class InfoTab extends Component {
   }
 
   componentDidMount() {
-    fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815&near&query=${this.props.currentPlace}&limit=1`)
+    fetch(`https://api.foursquare.com/v2/venues/search?ll=33.888928,-118.393534&client_id=${FOURSQUARE_CLIENT_ID}&client_secret=${FOURSQUARE_CLIENT_SECRET}&v=20130815&near&query=${this.props.currentPlace}&limit=1`)
     .then((res) => res.text())
     .then((text) => {
       let formattedResponse = JSON.parse(text).response.venues[0];
@@ -43,7 +44,7 @@ class InfoTab extends Component {
       return formattedResponse.id
     })
     .then((id) => {
-      fetch(`https://api.foursquare.com/v2/venues/${id}/photos?client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815`)
+      fetch(`https://api.foursquare.com/v2/venues/${id}/photos?client_id=${FOURSQUARE_CLIENT_ID}&client_secret=${FOURSQUARE_CLIENT_SECRET}&v=20130815`)
       .then((res) => res.text())
       .then((text) => {
         let formattedNewResponse = JSON.parse(text)
@@ -55,7 +56,7 @@ class InfoTab extends Component {
       return id
     })
     .then((id) => {
-      fetch(`https://api.foursquare.com/v2/venues/${id}?client_id=TPSVD55HZSB2CSKSFO1QITDRGGDUBXR1320V1C42EKBFC30T&client_secret=VZCPYPTDGXIBA2CJ3MQ4AU0SHRW0QOUUGYKWIXOZAZ20ID4U&v=20130815`)
+      fetch(`https://api.foursquare.com/v2/venues/${id}?client_id=${FOURSQUARE_CLIENT_ID}&client_secret=${FOURSQUARE_CLIENT_SECRET}&v=20130815`)
       .then((res) => res.text())
       .then((text) => {
         let allData = JSON.parse(text).response.venue
