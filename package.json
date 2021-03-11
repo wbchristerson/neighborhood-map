@@ -21,7 +21,7 @@
     "merge": ">=1.2.1",
     "webpack-dev-server": ">=3.1.11",
     "deep-extend": ">=0.5.1",
-    "react-dev-utils": ">=5.0.2",
+    "react-dev-utils": ">=11.0.4",
     "extend": ">=3.0.2",
     "fstream": ">=1.0.12"
   },
